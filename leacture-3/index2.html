@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="stylesheet" href="./assets/css/bootstrap.css">
+
+</head>
+
+<body>
+    <div class="container vh-100 d-flex justify-content-center align-items-center">
+        <div class="">
+            <div class="text-center">
+                <p>value 1 : <input type="number" id="v1"></p>
+                <p>value 2 : <input type="number" id="v2"></p>
+                <p>value 3 : <input type="number" id="v3"></p>
+
+                <div class="text-center ms-5">
+                    <button type="button" id="min">Min</button>
+                    <button type="button" id="max">Max</button>
+                    <button type="button" id="random">Random</button>
+                    <button type="button" id="clear">clear</button>
+                </div>
+            </div>
+            <h1 class="" id="answer"></h1>
+        </div>
+    </div>
+    </div>
+    <script src="./assets/js/jquery.js"></script>
+    <script>
+        let value1 = document.getElementById("v1")
+        let value2 = document.getElementById("v2")
+        let value3 = document.getElementById("v3")
+        function minNumber(a, b, c) {
+            if (a < b && a < c) {
+                document.getElementById("answer").innerHTML = `The smallest number is ${a}`;
+            } else if (b < a && b < c) {
+                document.getElementById("answer").innerHTML = `The smallest number is ${b}`;
+            } else {
+                document.getElementById("answer").innerHTML = `The smallest number is ${c}`;
+            }
+        }
+
+
+        function maxNumber(a, b, c) {
+            if (a > b && a > c) {
+                document.getElementById("answer").innerHTML = `The biggest number is ${a}`;
+            } else if (b > a && b > c) {
+                document.getElementById("answer").innerHTML = `The biggest number is ${b}`;
+            } else {
+                document.getElementById("answer").innerHTML = `The biggest number is ${c}`;
+            }
+
+        }
+
+        $(document).ready(function () {
+            $("#random").on("click", function () {
+                value1.value = parseInt(Math.random() * 1000)
+                value2.value = parseInt(Math.random() * 1000)
+                value3.value = parseInt(Math.random() * 1000)
+            })
+            $("#min").on("click", function () {
+                minNumber(parseInt(value1.value), parseInt(value2.value), parseInt(value3.value));
+            });
+
+            $("#max").on("click", function () {
+                maxNumber(parseInt(value1.value), parseInt(value2.value), parseInt(value3.value));
+            });
+
+
+            $("#clear").on("click", function () {
+                value1.value = "";
+                value2.value = "";
+                value3.value = "";
+                document.getElementById("answer").innerHTML = "";
+            });
+        });
+    </script>
+</body>
+
+</html>

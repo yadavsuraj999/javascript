@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="stylesheet" href="./assets/css/bootstrap.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+</head>
+
+<body class="background">
+    <div class="container-fluid d-flex justify-content-center align-items-center vh-100">
+        <div class="text-center border border-secondary d-inline-block m-auto box p-3">
+            <div class="text-center">
+                <h1 class="text-light">Calculator</h1>
+            </div>
+            <div class="mb-4 mt-4">
+                <input type="number" class="" placeholder="value-1" id="v1">
+            </div>
+            
+            
+            <div class="my-4 ">
+                <input type="number" class="" placeholder="value-2" id="v2">
+            </div>
+            <button type="button" class="fs-5 bg text-white fw-bold" id="sum"><i class="bi bi-plus "></i></button>
+            <button type="button" class="fs-5 bg text-white fw-bold" id="sub"><i class="bi bi-dash"></i></button>
+            <button type="button" class="fs-5 bg text-white fw-bold" id="mul"><i class="bi bi-x"></i></button>
+            <button type="button" class="fs-5 bg text-white fw-bold" id="div"><i class="bi bi-slash"></i></button>
+            <button type="button" class="fs-5 bg text-white fw-bold" id="clear">clear</button>
+            <h2 class="text-light">Ans</h2>
+            <div class="mb-4" ><input type="text" id="answer" placeholder="answer"></div>
+        </div>
+    </div>
+
+    <script src="./assets/js/jquery.js"></script>
+    <script src="./assets/js/bootstrap.js"></script>
+    <script>
+        function addition(v1, v2){
+            document.getElementById("answer").value = v1+v2
+        }
+        function subraction(v1, v2){
+            document.getElementById("answer").value = v1-v2
+        }
+        function multiplication(v1, v2){
+            document.getElementById("answer").value = v1*v2
+        }
+        function divison(v1, v2){
+            document.getElementById("answer").value = v1/v2
+        }
+        function clear(){
+            document.getElementById("answer").value = ""
+            document.getElementById("v1").value = ""
+            document.getElementById("v2").value = ""
+        }
+        let element1 = document.getElementById("v1")
+        let element2 = document.getElementById("v2")
+
+        $(document).ready(function(){
+            $("#sum").on("click", function(){
+                addition(parseFloat(element1.value),parseFloat(element2.value))
+            })
+            $("#sub").on("click", function(){
+                subraction(parseFloat(element1.value),parseFloat(element2.value))
+            })
+            $("#mul").on("click", function(){
+                multiplication(parseFloat(element1.value),parseFloat(element2.value))
+            })
+            $("#div").on("click", function(){
+                divison(parseFloat(element1.value),parseFloat(element2.value))
+            })
+            $("#clear").on("click", function(){
+                clear();
+            })
+        })
+    </script>
+
+
+</body>
+
+</html>

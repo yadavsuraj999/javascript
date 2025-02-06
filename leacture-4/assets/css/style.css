@@ -1,0 +1,42 @@
+.btn-primary {
+    background: #08bcb9 !important;
+    border: none;
+    color: white;
+    font-weight: 500;
+}
+
+.btn-primary:hover {
+    background: #045b5a !important;
+}
+
+h1 {
+    text-align: center;
+    font-weight: 500;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    color: #08bcb9 !important;
+}
+
+.glass {
+    background: rgba( 255, 255, 255, 0.1 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 0.5px );
+    -webkit-backdrop-filter: blur( 0.5px );
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    font-weight: 500;
+    color: #08bcb9;
+}
+
+section{
+    background-image: url('https://wallpapercrafter.com/desktop5/1476571-lines-dull-shape-background-abstract-backgrounds.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}

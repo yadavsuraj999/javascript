@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Sign Up Form</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
+
+</head>
+
+<body>
+    <section class="d-flex justify-content-center align-items-center vh-100 ">
+        <div class="container">
+            <form action="" id="form">
+                <div class="glass col-md-4 m-auto">
+                    <div class="p-5">
+                        <h1>Sign Up</h1>
+                        <div class="form-group">
+                            <label for="name">Full Name</label>
+                            <input type="text" placeholder="Enter Your Full Name" name="name" id="name"
+                                class="form-control " required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" placeholder="Enter Your Email" name="email" id="email"
+                                class="form-control " required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="number" placeholder="Enter Your Phone Number" name="phone" id="phone"
+                                class="form-control size" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="password" placeholder="Enter Your Password" name="password" id="password"
+                                class="form-control size" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="confirmpassword">Confirm Password</label>
+                            <input type="password" placeholder="Confirm Your Password" name="confirmpassword"
+                                id="confirmpassword" class="form-control size" required>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" id="sub" class="btn btn-primary">Sign Up</button>
+                        </div>  
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        let value1 = document.getElementById("name");
+        let value3 = document.getElementById("email");
+        let value4 = document.getElementById("phone");
+        let value5 = document.getElementById("password");
+        let value6 = document.getElementById("confirmpassword");
+        let form = document.getElementById("form");
+
+        $(document).ready(function () {
+            $("#sub").on("click", function (e) {
+                e.preventDefault();
+
+                if (value1.value.trim() == "") {
+                    Swal.fire("Name is Required");
+                    return;
+                } else if (value3.value.trim() == "") {
+                    Swal.fire("Email is Required");
+                    return;
+                } else if (value4.value.trim() == "" || value4.value.length < 10) {
+                    Swal.fire("Phone No is Required and Atleast 10 Number is Required");
+                    return;
+                } else if (value5.value.trim() == "" || value6.value.trim() == "") {
+                    Swal.fire("Password and Confirm Password are Required");
+                    return;
+                } else if (value5.value.length < 8) {
+                    Swal.fire("Password must be at least 8 characters long");
+                    return;
+                } else if (value5.value !== value6.value) {
+                    Swal.fire("Password and Confirm Password do not match");
+                    return;
+                }
+
+                Swal.fire({
+                    title: "Welcome!",
+                    text: "Your account has been created successfully!",
+                    icon: "success"
+                }).then(() => {
+                    form.submit();  // Reset form after successful submission
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
