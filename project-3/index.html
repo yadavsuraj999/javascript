@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic-Tac-Toe</title>
+    <link rel="stylesheet" href="./assets/css/style.css">
+</head>
+
+<body>
+    <div class="game-container">
+        <div id="board">
+            <button class="cell" id="box1"></button>
+            <button class="cell" id="box2"></button>
+            <button class="cell" id="box3"></button>
+            <button class="cell" id="box4"></button>
+            <button class="cell" id="box5"></button>
+            <button class="cell" id="box6"></button>
+            <button class="cell" id="box7"></button>
+            <button class="cell" id="box8"></button>
+            <button class="cell" id="box9"></button>
+        </div>
+        <div class="info">
+            <p id="status">Player X's turn</p>
+            <button id="reset" onclick="">Reset Game</button>
+            <div class="leaderboard">
+                <p><strong>Leaderboard:</strong></p>
+                <p id="xWins">X Wins:<span id="pointX">0</span></p>
+                <p id="oWins">O Wins:<span id="pointO">0</span></p>
+            </div>
+        </div>
+    </div>
+    <script src="./assets/js/jquery.js"></script>
+    <script src="./assets/js/node.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
+    <script>
+        let count = 0;
+        let flag = true
+        let pStatus = document.getElementById("status")
+        let pointX = parseInt(document.getElementById("pointX").innerHTML)
+        let pointO = parseInt(document.getElementById("pointO").innerHTML)
+        function checkWin(val) {
+            for (let i = 1; i <= 3; i++) {
+                let icon = document.getElementById(`box${i}`).innerHTML
+
+                if (icon != val) {
+                    flag = false;
+                    break;
+                }
+            }
+
+            if (flag) {
+                Swal.fire({
+                    icon: "success",
+                    title: `${val} won`,
+                    
+                })
+                if (val == "X") {
+                    document.getElementById("xWins").innerHTML = `X Wins: ${pointX += 1}`
+                } else {
+                    document.getElementById("oWins").innerHTML = `O Wins: ${pointO += 1}`
+
+                }
+                return true;
+            }
+
+            flag = true;
+            for (let i = 4; i <= 6; i++) {
+                let icon = document.getElementById(`box${i}`).innerHTML
+
+                if (icon != val) {
+                    flag = false;
+                    break;
+                }
+            }
+
+            if (flag) {
+                Swal.fire({
+                    icon: "success",
+                    title: `${val} won`,
+                    
+                })
+
+                if (val == "X") {
+                    document.getElementById("xWins").innerHTML = `X Wins: ${pointX += 1}`
+                } else {
+                    document.getElementById("oWins").innerHTML = `O Wins: ${pointO += 1}`
+
+                }
+                return true;
+            }
+
+            flag = true;
+            for (let i = 7; i <= 9; i++) {
+                let icon = document.getElementById(`box${i}`).innerHTML
+
+                if (icon != val) {
+                    flag = false;
+                    break;
+                }
+            }
+
+            if (flag) {
+                Swal.fire({
+                    icon: "success",
+                    title: `${val} won`,
+                    
+                })
+
+                if (val == "X") {
+                    document.getElementById("xWins").innerHTML = `X Wins: ${pointX += 1}`
+                } else {
+                    document.getElementById("oWins").innerHTML = `O Wins: ${pointO += 1}`
+
+                }
+                return true;
+            }
+            flag = true;
+            for (let i = 1; i <= 7; i += 3) {
+                let icon = document.getElementById(`box${i}`).innerHTML
+
+                if (icon != val) {
+                    flag = false;
+                    break;
+                }
+            }
+
+            if (flag) {
+                Swal.fire({
+                    icon: "success",
+                    title: `${val} won`,
+                    
+                })
+
+                if (val == "X") {
+                    document.getElementById("xWins").innerHTML = `X Wins: ${pointX += 1}`
+                } else {
+                    document.getElementById("oWins").innerHTML = `O Wins: ${pointO += 1}`
+
+                }
+                return true;
+            }
+            flag = true;
+            for (let i = 2; i <= 8; i += 3) {
+                let icon = document.getElementById(`box${i}`).innerHTML
+
+                if (icon != val) {
+                    flag = false;
+                    break;
+                }
+            }
+
+            if (flag) {
+                Swal.fire({
+                    icon: "success",
+                    title: `${val} won`,
+                    
+                })
+
+                if (val == "X") {
+                    document.getElementById("xWins").innerHTML = `X Wins: ${pointX += 1}`
+                } else {
+                    document.getElementById("oWins").innerHTML = `O Wins: ${pointO += 1}`
+
+                }
+                return true;
+            }
+            flag = true;
+            for (let i = 3; i <= 9; i += 3) {
+                let icon = document.getElementById(`box${i}`).innerHTML
+
+                if (icon != val) {
+                    flag = false;
+                    break;
+                }
+            }
+
+            if (flag) {
+                Swal.fire({
+                    icon: "success",
+                    title: `${val} won`,
+                    
+                })
+
+                if (val == "X") {
+                    document.getElementById("xWins").innerHTML = `X Wins: ${pointX += 1}`
+                } else {
+                    document.getElementById("oWins").innerHTML = `O Wins: ${pointO += 1}`
+
+                }
+                return true;
+            }
+            flag = true;
+            for (let i = 1; i <= 9; i += 4) {
+                let icon = document.getElementById(`box${i}`).innerHTML
+
+                if (icon != val) {
+                    flag = false;
+                    break;
+                }
+            }
+
+            if (flag) {
+                Swal.fire({
+                    icon: "success",
+                    title: `${val} won`,
+                    
+                })
+
+                if (val == "X") {
+                    document.getElementById("xWins").innerHTML = `X Wins: ${pointX += 1}`
+                } else {
+                    document.getElementById("oWins").innerHTML = `O Wins: ${pointO += 1}`
+
+                }
+                return true;
+            }
+            flag = true;
+            for (let i = 3; i <= 7; i += 2) {
+                let icon = document.getElementById(`box${i}`).innerHTML
+
+                if (icon != val) {
+                    flag = false;
+                    break;
+                }
+            }
+
+            if (flag) {
+                Swal.fire({
+                    icon: "success",
+                    title: `${val} won`,
+                    
+                })
+
+                if (val == "X") {
+                    document.getElementById("xWins").innerHTML = `X Wins: ${pointX += 1}`
+                } else {
+                    document.getElementById("oWins").innerHTML = `O Wins: ${pointO += 1}`
+
+                }
+                return true;
+            }
+
+            if (count == 9) {
+                Swal.fire({
+                    icon: "warning",
+                    title: "Draw !",
+                    
+                }).then(() => {
+                    clear();
+                });
+            }
+        }
+
+        function clear() {
+            for (let i = 1; i <= 9; i++) {
+                document.getElementById(`box${i}`).innerHTML = "";
+                count = 0;
+            }
+
+            pStatus.innerHTML = `Player X's turn`
+        }
+
+        $(".cell").on("click", function () {
+            let tile = $(this)[0]
+
+            if (tile.innerHTML == "") {
+                if (count % 2 == 0) {
+                    tile.innerHTML = "X";
+                    pStatus.innerHTML = `Player O's turn`
+                } else {
+                    tile.innerHTML = "O"
+                    pStatus.innerHTML = `Player X's turn`
+                }
+                count++
+
+                if (count >= 5) {
+                    let win = checkWin(tile.innerHTML)
+                    if (win) {
+                        clear()
+                    }
+                }
+            } else {
+                Swal.fire({
+                    icon: "error",
+                    title: "Cant Overwrite !",
+                });
+            }
+        })
+
+        $("#reset").on("click", function () {
+            clear();
+        })
+    </script>
+</body>
+
+</html>
