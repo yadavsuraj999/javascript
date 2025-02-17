@@ -6,31 +6,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tic-Tac-Toe</title>
     <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="stylesheet" href="./assets/css/bootstrap.css">
 </head>
 
 <body>
-    <div class="game-container">
-        <div id="board">
-            <button class="cell border border-0" id="box1"></button>
-            <button class="cell" id="box2"></button>
-            <button class="cell" id="box3"></button>
-            <button class="cell" id="box4"></button>
-            <button class="cell" id="box5"></button>
-            <button class="cell" id="box6"></button>
-            <button class="cell" id="box7"></button>
-            <button class="cell" id="box8"></button>
-            <button class="cell" id="box9"></button>
-        </div>
-        <div class="info">
-            <p id="status">Player X's turn</p>
-            <button id="reset" onclick="">Reset Game</button>
-            <div class="leaderboard">
-                <p><strong>Leaderboard:</strong></p>
-                <p id="xWins">X Wins:<span id="pointX">0</span></p>
-                <p id="oWins">O Wins:<span id="pointO">0</span></p>
+    <section>
+        <div class="game-container">
+            <h1 class="text-white mb-5">Tic-Tac-Toe</h1>
+            <div id="board">
+                <button class="cell btn border-bottom border-end" id="box1"></button>
+                <button class="cell btn border-bottom border-end" id="box2"></button>
+                <button class="cell btn border-bottom" id="box3"></button>
+                <button class="cell btn border-bottom border-end" id="box4"></button>
+                <button class="cell btn border-bottom border-end" id="box5"></button>
+                <button class="cell btn border-bottom " id="box6"></button>
+                <button class="cell btn border-end" id="box7"></button>
+                <button class="cell btn border-end" id="box8"></button>
+                <button class="cell btn" id="box9"></button>
+            </div>
+            <div class="info">
+                <p id="status">Player X's turn</p>
+                <button id="reset" onclick="">Reset Game</button>
+                <div class="leaderboard">
+                    <p><strong>Leaderboard:</strong></p>
+                    <p id="xWins">X Wins:<span id="pointX">0</span></p>
+                    <p id="oWins">O Wins:<span id="pointO">0</span></p>
+                </div>
             </div>
         </div>
-    </div>
+    </section>
     <script src="./assets/js/jquery.js"></script>
     <script src="./assets/js/node.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -57,7 +61,7 @@
                 Swal.fire({
                     icon: "success",
                     title: `${val} won`,
-                    
+
                 })
                 if (val == "X") {
                     document.getElementById("xWins").innerHTML = `X Wins: ${pointX += 1}`
@@ -82,7 +86,7 @@
                 Swal.fire({
                     icon: "success",
                     title: `${val} won`,
-                    
+
                 })
 
                 if (val == "X") {
@@ -108,7 +112,7 @@
                 Swal.fire({
                     icon: "success",
                     title: `${val} won`,
-                    
+
                 })
 
                 if (val == "X") {
@@ -133,7 +137,7 @@
                 Swal.fire({
                     icon: "success",
                     title: `${val} won`,
-                    
+
                 })
 
                 if (val == "X") {
@@ -158,7 +162,7 @@
                 Swal.fire({
                     icon: "success",
                     title: `${val} won`,
-                    
+
                 })
 
                 if (val == "X") {
@@ -183,7 +187,7 @@
                 Swal.fire({
                     icon: "success",
                     title: `${val} won`,
-                    
+
                 })
 
                 if (val == "X") {
@@ -208,7 +212,7 @@
                 Swal.fire({
                     icon: "success",
                     title: `${val} won`,
-                    
+
                 })
 
                 if (val == "X") {
@@ -233,7 +237,7 @@
                 Swal.fire({
                     icon: "success",
                     title: `${val} won`,
-                    
+
                 })
 
                 if (val == "X") {
@@ -249,7 +253,7 @@
                 Swal.fire({
                     icon: "warning",
                     title: "Draw !",
-                    
+
                 }).then(() => {
                     clear();
                 });
