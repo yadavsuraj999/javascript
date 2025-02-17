@@ -78,3 +78,8 @@ select:focus{
     border: none !important;
     box-shadow: none !important;
 }
+
+input:focus{
+    border: none !important;
+    box-shadow: none !important;
+}
