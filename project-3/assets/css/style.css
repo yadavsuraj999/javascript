@@ -11,8 +11,9 @@
     align-items: center;
     height: 100vh;
     background-color: #f4f4f4;
-    background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQS0Xn5lYsItYl13ec8Aw9xtDgstGXYdN6zpg&s');
+    background-image: url('https://wallpapers.com/images/high/simple-pictures-0m4vk4xbx09p1gg7.webp');
     background-repeat: no-repeat;
+    background-position: center center;
     background-size: cover;
   }
   
@@ -32,7 +33,7 @@
     width: 100px;
     height: 100px;
     color: white;
-    border: 2px solid #fdfafa4b;
+    border: 2px solid #a30000;
     display: flex;
     justify-content: center;
     align-items: center;
