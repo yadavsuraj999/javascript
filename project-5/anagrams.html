@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anagrams</title>
+
+    <link href="./assest/css/bootstrap.css" rel="stylesheet">
+
+    <style>
+        body {
+
+            background: #f8f9fa;
+            font-family: 'Arial', sans-serif;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-image: url("https://media.istockphoto.com/id/469364048/photo/blue-rubber-texture-soft-tone-white-color.jpg?s=612x612&w=0&k=20&c=wLuIquuatT3OkrlfmDd5dbzC9eIurIH8m1kDqMUV6zk=");
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center center;
+           
+        }
+
+        .container {
+            max-width: 500px;
+            margin: 100px auto;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+        }
+
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #ff961f;
+            text-align: center;
+        }
+
+        .form-control {
+            margin-bottom: 15px;
+            border-radius: 5px;
+        }
+
+        #btn1 {
+            width: 100%;
+            background-color: #e87c00;
+            border: none;
+            color: rgb(4, 4, 4);
+            font-size: 1.1rem;
+            padding: 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        #btn1:hover {
+            background-color: #c4640f;
+            color: wheat;
+        }
+
+        #ans {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #28a745;
+            margin-top: 20px;
+        }
+
+        #ans.error {
+            color: #dc3545;
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+        }
+
+        input:focus {
+            border: 1px solid #e87c00 !important;
+            box-shadow: none !important;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Anagram Checker</h1>
+        <div class="input-group">
+            <input type="text" class="form-control" id="anagram" placeholder="Enter First String">
+        </div>
+        <div class="input-group">
+            <input type="text" class="form-control" id="anagram2" placeholder="Enter Second String">
+        </div>
+        <div class="text-center">
+            <button id="btn1" class="btn btn-primary">Check Anagram</button>
+        </div>
+        <h1 class="fs-2" id="ans"></h1>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            let anagram = document.getElementById("anagram");
+            let anagram2 = document.getElementById("anagram2");
+            let ans = document.getElementById("ans");
+
+            $("#btn1").on("click", function () {
+
+                let Anagram1 = anagram.value.split(" ").join("").toLowerCase();
+                let Anagram2 = anagram2.value.split(" ").join("").toLowerCase();
+
+                if (Anagram1 === "" || Anagram2 === "") {
+                    ans.innerHTML = "Please enter valid strings!";
+                    ans.classList.add('error');
+                    return;
+                }
+
+                let sorted1 = Anagram1.split("").sort().join("");
+                let sorted2 = Anagram2.split("").sort().join("");
+
+                if (sorted1 === sorted2) {
+                    ans.innerHTML = "It's an anagram!";
+                    ans.classList.remove('error');
+                    ans.classList.add('success');
+                } else {
+                    ans.innerHTML = "It's not an anagram.";
+                    ans.classList.add('error');
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

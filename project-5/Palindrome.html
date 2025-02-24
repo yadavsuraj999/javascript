@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Palindrome Checker</title>
+
+  
+    <link href="./assest/css/bootstrap.css" rel="stylesheet">
+
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-image: url("https://media.istockphoto.com/id/469364048/photo/blue-rubber-texture-soft-tone-white-color.jpg?s=612x612&w=0&k=20&c=wLuIquuatT3OkrlfmDd5dbzC9eIurIH8m1kDqMUV6zk=");
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center center;
+        }
+
+        .container {
+            max-width: 600px;
+            margin-top: 100px;
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            font-size: 2rem;
+            color: #ff961f;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid #ced4da;
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            transition: border-color 0.3s;
+        }
+
+        input:focus {
+            border: 1px solid #e87c00 !important;
+            box-shadow: none !important;
+        }
+
+        #btn {
+            width: 100%;
+            background-color: #e87c00;
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        #btn:hover {
+            background-color: #c4640f;
+            color: wheat;
+        }
+
+        #ans {
+            text-align: center;
+            font-size: 1.5rem;
+            margin-top: 20px;
+        }
+
+        #ans.success {
+            color: #28a745;
+        }
+
+        #ans.error {
+            color: #dc3545;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h2>Palindrome Checker</h2>
+        <input type="text" id="input" placeholder="Enter any word" />
+        <button id="btn" class="btn btn-primary">Check Palindrome</button>
+        <h1 id="ans"></h1>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        let element = document.getElementById("input");
+
+        function Palindrome(str) {
+
+            let cleanedStr = '';
+            for (let i = 0; i < str.length; i++) {
+                let char = str[i].toLowerCase();
+
+                if ((char >= 'a' && char <= 'z') || (char >= '0' && char <= '9')) {
+                    cleanedStr += char;
+                }
+            }
+
+
+            let reverse = cleanedStr.split('').reverse().join('');
+
+
+            if (cleanedStr === reverse) {
+                document.getElementById("ans").innerHTML = "Yes, it is a Palindrome!";
+                document.getElementById("ans").className = 'success';
+            } else {
+                document.getElementById("ans").innerHTML = "No, it is not a Palindrome.";
+                document.getElementById("ans").className = 'error';
+            }
+        }
+
+        $("#btn").on("click", function () {
+            let str = element.value;
+            Palindrome(str);
+        });
+    </script>
+
+</body>
+
+</html>

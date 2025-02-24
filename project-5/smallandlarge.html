@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Second Smallest and Second Largest</title>
+    <link rel="stylesheet" href="./assest/css/style.css">
+    <link rel="stylesheet" href="./assest/css/bootstrap.css">
+    <style>
+        /* Global Styles */
+        body {
+            background-color: #f4f7f6;
+            font-family: 'Arial', sans-serif;
+            color: #333;
+            padding: 50px 0;
+            background-image: url("https://media.istockphoto.com/id/469364048/photo/blue-rubber-texture-soft-tone-white-color.jpg?s=612x612&w=0&k=20&c=wLuIquuatT3OkrlfmDd5dbzC9eIurIH8m1kDqMUV6zk=");
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center center;
+        }
+
+        h2 {
+            text-align: center;
+            color: #ff961f;
+            margin-bottom: 30px;
+            font-size: 30px;
+            font-weight: 700;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+            transition: border-color 0.3s ease;
+        }
+
+        input[type="text"]:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            color: white;
+            background-color: #e87c00;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #c4640f;
+            color: wheat;
+        }
+
+        .result {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .result h1 {
+            font-size: 18px;
+        }
+
+        .result h1#ans2 {
+            color: #28a745;
+        }
+
+        .result h1#ans1 {
+            color: #dc3545;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+            }
+
+            h2 {
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h2>Second Smallest and Second Largest</h2>
+
+        <!-- Input Fields -->
+        <div class="input-group">
+            <input type="text" id="userInput1" placeholder="Enter any Number">
+        </div>
+        <div class="input-group">
+            <input type="text" id="userInput2" placeholder="Enter any Number">
+        </div>
+        <div class="input-group">
+            <input type="text" id="userInput3" placeholder="Enter any Number">
+        </div>
+        <div class="input-group">
+            <input type="text" id="userInput4" placeholder="Enter any Number">
+        </div>
+        <div class="input-group">
+            <input type="text" id="userInput5" placeholder="Enter any Number">
+        </div>
+
+        <!-- Buttons -->
+        <button id="btn1">Generate Random Numbers</button>
+        <button id="btn2">Find Second Smallest & Largest</button>
+
+        <!-- Results Section -->
+        <div class="result">
+            <h1 id="ans2">Second Smallest: </h1>
+            <h1 id="ans1">Second Largest: </h1>
+        </div>
+    </div>
+
+    <script src="./assest/js/index.js"></script>
+    <script src="./assest/js/jquery.js"></script>
+    <script>
+       $("#btn2").on("click", function () {
+            let arr = [];
+            for (let i = 1; i <= 5; i++) {
+                let val = document.getElementById(`userInput${i}`).value;
+                arr.push(val);
+            }
+
+            arr.sort((a, b) => a - b);
+            for (let i = 1; i <= 5; i++) {
+                document.getElementById(`userInput${i}`).value = arr[i - 1];
+            }
+
+            document.getElementById("ans1").innerHTML = `second largest :- ${arr[3]}`;
+            document.getElementById("ans2").innerHTML = `second smallest :- ${arr[1]}`;
+        });
+
+        $("#btn1").on("click", function () {
+            for (let i = 1; i <= 5; i++) {
+                document.getElementById(`userInput${i}`).value = parseInt(Math.random() * 1000);
+            }
+        });
+    </script>
+</body>
+
+</html>

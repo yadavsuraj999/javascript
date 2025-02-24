@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prime Number</title>
+    <link rel="stylesheet" href="./assest/css/style.css">
+    <link rel="stylesheet" href="./assest/css/bootstrap.css">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f7fa;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-image: url("https://media.istockphoto.com/id/469364048/photo/blue-rubber-texture-soft-tone-white-color.jpg?s=612x612&w=0&k=20&c=wLuIquuatT3OkrlfmDd5dbzC9eIurIH8m1kDqMUV6zk=");
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center center;
+        }
+
+        h2 {
+            color: #ff961f;
+            font-size: 2rem;
+            text-align: center;
+            margin-top: 25px;
+            font-weight: 700;
+            margin-bottom: 25px;
+        }
+
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 30px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            margin-top: 50px;
+            width: 100%;
+            max-width: 500px;
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 15px;
+        }
+
+        .input-group div input {
+            width: 100%; 
+            padding: 12px;
+            margin-bottom: 10px;
+            border: 1px solid #ced4da;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .input-group input:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+
+        #btn1 {
+            width: 100%;
+            background-color: #e87c00;
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        #btn1:hover {
+            background-color: #c4640f;
+            color: wheat;
+        }
+
+        #ans1 {
+            text-align: center;
+            font-size: 1.5rem;
+            margin-top: 20px;
+            color: #28a745;
+        }
+
+        @media (max-width: 576px) {
+            .input-group div input {
+                padding: 10px;
+                font-size: 0.9rem;
+            }
+
+            #btn1 {
+                font-size: 1rem;
+                padding: 10px;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+            }
+
+            #ans1 {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h2>Prime Number Checker</h2>
+        <div class="input-group">
+            <div><input type="text" id="userInput1" disabled placeholder="Random number"></div>
+            <div><input type="text" id="userInput2" disabled placeholder="Random number"></div>
+            <div><input type="text" id="userInput3" disabled placeholder="Random number"></div>
+            <div><input type="text" id="userInput4" disabled placeholder="Random number"></div>
+            <div><input type="text" id="userInput5" disabled placeholder="Random number"></div>
+        </div>
+        <button id="btn1">Generate & Check Prime Numbers</button>
+        <h1 id="ans1">Prime Numbers Are: </h1>
+    </div>
+
+    <script src="./assest/js/jquery.js"></script>
+    <script src="./assest/js/index.js"></script>
+    <script>
+        $("#btn1").on("click", function () {
+            let arr = [];
+            for (let i = 1; i <= 5; i++) {
+                let num = parseInt(Math.random() * 100);
+                document.getElementById(`userInput${i}`).value = num;
+                arr.push(num);
+            }
+
+            function isPrime(num) {
+                if (num <= 1) {
+                    return false;
+                }
+                for (let i = 2; i * i <= num; i++) {
+                    if (num % i == 0) {
+                        return false;
+                    }
+                }
+                return true;
+            }
+
+            let primeNumbers = arr.filter(isPrime);
+            document.getElementById("ans1").innerHTML = "Prime Numbers Are: " + primeNumbers.join(", ");
+        });
+    </script>
+
+</body>
+
+</html>

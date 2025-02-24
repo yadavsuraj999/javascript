@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Uppercase</title>
+    <link rel="stylesheet" href="./assest/css/style.css">
+    <link rel="stylesheet" href="./assest/css/bootstrap.css">
+    <style>
+
+        body {
+            background-color: #f4f7fc;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-image: url("https://media.istockphoto.com/id/469364048/photo/blue-rubber-texture-soft-tone-white-color.jpg?s=612x612&w=0&k=20&c=wLuIquuatT3OkrlfmDd5dbzC9eIurIH8m1kDqMUV6zk=");
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center center;
+        }
+
+        .m-5 {
+            margin-top: 80px;
+            padding: 30px;
+            background-color: #ffffff;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 22px;
+            color: #ff961f;
+            font-weight: 600;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 14px;
+            font-size: 16px;
+            border: 1px solid #e87c00;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            box-sizing: border-box;
+            transition: border-color 0.3s ease;
+        }
+
+        input[type="text"]:focus {
+            border: none !important; 
+            box-shadow: none !important;
+        }
+
+        button {
+            padding: 14px 20px;
+            font-size: 16px;
+            color: white;
+            background-color: #e87c00;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #c4640f;
+            color: wheat;
+        }
+
+
+        @media (max-width: 600px) {
+            .m-5 {
+                width: 90%;
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="m-5">
+        <h1 class="fs-1">Vowel</h1>
+        <input type="text" placeholder="Enter Any Name" id="userInput">
+        <button onclick="countLetters()">Count</button>
+        <h3 class="text-center">Result</h3>
+        <p class="text-center" id="vowelCount">Vowel : 0</p>
+        <p class="text-center" id="consonantCount">Consonants : 0</p>
+    </div>
+
+    <script src="./assest/js/jquery.js"></script>
+    <script src="./assest/js/index.js"></script>
+    <script>
+        function countLetters() {
+            let inputString = document.getElementById("userInput").value;
+            let vowels = "aeiouAEIOU";
+            let vowelCount = 0;
+            let consonantCount = 0;
+
+            for (let i = 0; i < inputString.length; i++) {
+                let char = inputString[i];
+
+                if ((char >= 'a' && char <= 'z') || (char >= 'A' && char <= 'Z')) {
+                    if (vowels.includes(char)) {
+                        vowelCount++;
+                    } else {
+                        consonantCount++;
+                    }
+                }
+            }
+
+            document.getElementById("vowelCount").textContent = "Vowels: " + vowelCount;
+            document.getElementById("consonantCount").textContent = "Consonants: " + consonantCount;
+        }
+    </script>
+</body>
+
+</html>

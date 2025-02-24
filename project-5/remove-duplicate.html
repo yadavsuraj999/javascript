@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Remove Duplicate</title>
+    <link rel="stylesheet" href="./assest/css/bootstrap.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f7fc;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-image: url("https://media.istockphoto.com/id/469364048/photo/blue-rubber-texture-soft-tone-white-color.jpg?s=612x612&w=0&k=20&c=wLuIquuatT3OkrlfmDd5dbzC9eIurIH8m1kDqMUV6zk=");
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center center;
+        }
+
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #ff961f;
+            font-weight: 700;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 500px;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            box-sizing: border-box;
+            transition: border 0.3s ease;
+        }
+
+        input:focus {
+            border: 1px solid #e87c00 !important;
+            box-shadow: none !important;
+        }
+
+        button {
+            background-color: #e87c00;
+            color: white;
+            border: none;
+            padding: 12px;
+            width: 100%;
+            font-size: 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #c4640f;
+            color: wheat;
+        }
+
+        h1 {
+            font-size: 1.2rem;
+            margin-top: 20px;
+            color: #333;
+            word-wrap: break-word;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2 class="text-center">Remove Duplicate</h2>
+        <input type="text" id="userInput1" placeholder="Enter any Number"><br>
+        <input type="text" id="userInput2" placeholder="Enter any Number"><br>
+        <input type="text" id="userInput3" placeholder="Enter any Number"><br>
+        <input type="text" id="userInput4" placeholder="Enter any Number"><br>
+        <input type="text" id="userInput5" placeholder="Enter any Number"><br>
+        <button id="btn1">Click</button>
+        <h1 class="text-center fw-bold" id="ans1"></h1>
+    </div>
+
+    <script src="./assest/js/index.js"></script>
+    <script src="./assest/js/jquery.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#btn1").on("click", function () {
+                let arr = [];
+                for (let i = 1; i <= 5; i++) {
+                    let val = document.getElementById(`userInput${i}`).value;
+                    arr.push(val);
+                }
+                let uniqueArr = [];
+                arr.forEach(item => {
+                    if (!uniqueArr.includes(item)) {
+                        uniqueArr.push(item);
+                    }
+                });
+                document.getElementById("ans1").innerHTML = `The Number Is :  ${uniqueArr.join(", ")}`;
+            });
+        });
+    </script>
+</body>
+
+</html>

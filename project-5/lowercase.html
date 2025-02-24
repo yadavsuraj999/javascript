@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lower Case</title>
+
+    <!-- Bootstrap CDN for styling -->
+    <link href="./assest/css//bootstrap.css" rel="stylesheet">
+
+    <!-- Custom CSS for additional styling -->
+    <style>
+        body {
+            background-color: #f4f7fa;
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-image: url("https://media.istockphoto.com/id/469364048/photo/blue-rubber-texture-soft-tone-white-color.jpg?s=612x612&w=0&k=20&c=wLuIquuatT3OkrlfmDd5dbzC9eIurIH8m1kDqMUV6zk=");
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center center;
+        }
+
+        .container {
+            max-width: 600px;
+            margin-top: 100px;
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            font-size: 2rem;
+            color: #ff961f;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid #000000;
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            transition: border-color 0.3s;
+        }
+
+        input:focus {
+            border: 1px solid #e87c00 !important;
+            box-shadow: none !important;
+        }
+
+        #btn {
+            width: 100%;
+            background-color: #e87c00;
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        #btn:hover {
+            background-color: #c4640f;
+            color: wheat;
+        }
+
+        #ans {
+            text-align: center;
+            font-size: 1.5rem;
+            color: #28a745;
+            margin-top: 20px;
+        }
+
+        .text-center {
+            font-size: 1.2rem;
+            color: #343a40;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h2>Lower Case</h2>
+        <input type="text" id="lower" placeholder="Enter any word" />
+        <button id="btn" class="btn btn-primary">Check Palindrome</button>
+        <h1 id="ans"></h1>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        let element = document.getElementById("lower");
+
+        function lowerCase(str) {
+            let newstr = document.getElementById("ans").innerHTML = `The Lower Case :${str.toLowerCase()}`;
+        }
+
+        $("#btn").on("click", function () {
+            let str = element.value;
+            lowerCase(str);
+        })
+    </script>
+
+</body>
+
+</html>
