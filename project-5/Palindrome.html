@@ -103,18 +103,19 @@
         function Palindrome(str) {
 
             let cleanedStr = '';
+
             for (let i = 0; i < str.length; i++) {
                 let char = str[i].toLowerCase();
-
+                
                 if ((char >= 'a' && char <= 'z') || (char >= '0' && char <= '9')) {
                     cleanedStr += char;
                 }
             }
-
-
+            
+            
             let reverse = cleanedStr.split('').reverse().join('');
-
-
+            
+            
             if (cleanedStr === reverse) {
                 document.getElementById("ans").innerHTML = "Yes, it is a Palindrome!";
                 document.getElementById("ans").className = 'success';
@@ -122,6 +123,10 @@
                 document.getElementById("ans").innerHTML = "No, it is not a Palindrome.";
                 document.getElementById("ans").className = 'error';
             }
+            if (cleanedStr === ""){
+                document.getElementById("ans").innerHTML = "Please Enter Valid Input";
+            }
+
         }
 
         $("#btn").on("click", function () {

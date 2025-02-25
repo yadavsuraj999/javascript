@@ -26,17 +26,27 @@ h1 {
 }
 
 .btn-convert {
-    width: 100%;
-    padding: 12px;
-    background-color: #28a745;
-    color: #fff;
+    background: linear-gradient(45deg, #8b7f7c, #e6dbd2);
     border: none;
-    border-radius: 5px;
-    font-size: 16px;
+    color: white;
+    padding: 12px 20px;
+    font-size: 18px;
+    font-weight: bold;
+    text-transform: uppercase;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    width: 100%;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
 }
 
 .btn-convert:hover {
-    background-color: #218838;
+    background: linear-gradient(45deg, #836d6f, #ffffff);
+    transform: scale(1.05);
+}
+
+.btn-convert:active {
+    transform: scale(0.98);
 }
 
 .form-group {

@@ -78,7 +78,6 @@
             color: #333;
             word-wrap: break-word;
         }
-
     </style>
 </head>
 
@@ -90,8 +89,8 @@
         <input type="text" id="userInput3" placeholder="Enter any Number"><br>
         <input type="text" id="userInput4" placeholder="Enter any Number"><br>
         <input type="text" id="userInput5" placeholder="Enter any Number"><br>
-        <button id="btn1">Click</button>
-        <h1 class="text-center fw-bold" id="ans1"></h1>
+        <button id="btn1">Remove Duplicate</button>
+        <h1 class="text-center fw-bold text-success" id="ans1"></h1>
     </div>
 
     <script src="./assest/js/index.js"></script>
@@ -103,6 +102,11 @@
                 for (let i = 1; i <= 5; i++) {
                     let val = document.getElementById(`userInput${i}`).value;
                     arr.push(val);
+                }
+               
+                if (arr.includes("")) {
+                    document.getElementById("ans1").innerHTML = "Please Enter Valid Input";
+                    return;
                 }
                 let uniqueArr = [];
                 arr.forEach(item => {

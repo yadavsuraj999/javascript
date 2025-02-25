@@ -91,7 +91,7 @@
     <div class="container">
         <h2>Lower Case</h2>
         <input type="text" id="lower" placeholder="Enter any word" />
-        <button id="btn" class="btn btn-primary">Check Palindrome</button>
+        <button id="btn" class="btn btn-primary">Convert To LowerCase</button>
         <h1 id="ans"></h1>
     </div>
 
@@ -100,8 +100,13 @@
         let element = document.getElementById("lower");
 
         function lowerCase(str) {
-            let newstr = document.getElementById("ans").innerHTML = `The Lower Case :${str.toLowerCase()}`;
+            if (str === "") {
+                document.getElementById("ans").innerHTML = "Please Enter Valid Input";
+            } else {
+                document.getElementById("ans").innerHTML = `${str.toLowerCase()}`;
+            }
         }
+        
 
         $("#btn").on("click", function () {
             let str = element.value;

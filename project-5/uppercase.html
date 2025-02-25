@@ -42,6 +42,10 @@
             font-weight: 600;
         }
 
+        h2{
+            color: green;
+        }
+
         input[type="text"] {
             width: 100%;
             padding: 14px;
@@ -93,23 +97,23 @@
     <div class="m-5">
         <h1 class="fs-1">Uppercase</h1>
         <input type="text" placeholder="Enter Any Name" id="upper">
-        <button id="btn1">Click</button>
-        <h2 class="mt-3" id="ans"></h2>
+        <button id="btn1">Convert To UpperCase</button>
+        <h2 class="mt-3 fs-3" id="ans"></h2>
     </div>
 
     <script src="./assest/js/jquery.js"></script>
     <script src="./assest/js/index.js"></script>
     <script>
-        let element = document.getElementById("upper");
-
-        function upperCase(str) {
-            let newstr = document.getElementById("ans").innerHTML = str.toUpperCase();
-        }
-
-        $("#btn1").on("click", function () {
-            let str = element.value;
-            upperCase(str);
-        })
+        let input = document.getElementById("upper");
+        
+        $("#btn1").on("click", function(){
+            let val = input.value;
+            document.getElementById("ans").innerHTML = val.toUpperCase();
+            if(val == ""){
+                document.getElementById("ans").innerHTML = "Please Enter Valid Input.."
+                ans.classList.add('success')
+            }
+        });
     </script>
 
 </body>

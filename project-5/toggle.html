@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="./assest/css/style.css">
     <link rel="stylesheet" href="./assest/css/bootstrap.css">
     <style>
-        /* Global Styles */
         body {
             background-color: #f8f9fa;
             font-family: 'Arial', sans-serif;
@@ -22,7 +21,7 @@
             background-repeat: no-repeat;
             background-size: cover;
             background-position: center center;
-           
+
         }
 
         .m-5 {
@@ -35,6 +34,10 @@
             border-radius: 8px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
             text-align: center;
+        }
+
+        h2 {
+            color: green;
         }
 
         h1 {
@@ -76,7 +79,6 @@
             color: wheat;
         }
 
-        /* Responsive Design */
         @media (max-width: 600px) {
             .m-5 {
                 width: 90%;
@@ -94,31 +96,34 @@
     <div class="m-5">
         <h1 class="fs-1">Toggle</h1>
         <input type="text" placeholder="Enter Any Name" id="toggle">
-        <button id="btn1">Click</button>
-        <h2 class="mt-3" id="ans"></h2>
+        <button id="btn1">Toggle</button>
+        <h2 class="mt-3 fs-4" id="ans"></h2>
     </div>
 
     <script src="./assest/js/jquery.js"></script>
     <script src="./assest/js/index.js"></script>
     <script>
         function Toggle(str) {
-            let result = '';
+            if (str === "") {
+                document.getElementById("ans").innerHTML = "Please Enter Valid Input";
+                return;
+            }
+
+            let result = "";
             for (let i = 0; i < str.length; i++) {
                 let char = str[i];
-
                 if (char === char.toUpperCase()) {
-                    result = result + char.toLowerCase();
+                    result += char.toLowerCase();
                 } else {
-                    result = result + char.toUpperCase();
+                    result += char.toUpperCase();
                 }
             }
-            $("#ans").text(result);
+            document.getElementById("ans").innerHTML = result;
         }
 
         $("#btn1").on("click", function () {
-            let str = $("#toggle").val();
-            Toggle(str);
-        });
+            Toggle(document.getElementById('toggle').value)
+        })
     </script>
 </body>
 

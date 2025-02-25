@@ -87,7 +87,7 @@
         <div class="input-group">
             <input type="text" class="form-control" id="userInput1" placeholder="Enter Any words">
         </div>
-        <button id="btn1" class="btn btn-primary">Submit</button>
+        <button id="btn1" class="btn btn-primary">Find Longest Word</button>
         <h1 id="ans1"></h1>
     </div>
 
@@ -98,7 +98,12 @@
 
         $("#btn1").on("click", function () {
             let arr = input.value.split(" ");
+            if(arr == ""){
+                display.innerHTML = "Please Enter Valid Input"
+                return
+            }
             let longestword = arr[0];
+
 
             for (let i = 1; i < arr.length; i++) {
                 if (arr[i].length > longestword.length) {
@@ -106,7 +111,7 @@
                 }
             }
 
-            display.innerHTML = `The longest word is: <strong>"${longestword}"</strong>`;
+            display.innerHTML = `<strong>"${longestword}"</strong>`;
         });
     </script>
 </body>

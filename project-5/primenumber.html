@@ -132,6 +132,7 @@
     <script>
         $("#btn1").on("click", function () {
             let arr = [];
+
             for (let i = 1; i <= 5; i++) {
                 let num = parseInt(Math.random() * 100);
                 document.getElementById(`userInput${i}`).value = num;
@@ -139,9 +140,6 @@
             }
 
             function isPrime(num) {
-                if (num <= 1) {
-                    return false;
-                }
                 for (let i = 2; i * i <= num; i++) {
                     if (num % i == 0) {
                         return false;
@@ -150,8 +148,14 @@
                 return true;
             }
 
+            arr.filter(()=>{});
             let primeNumbers = arr.filter(isPrime);
-            document.getElementById("ans1").innerHTML = "Prime Numbers Are: " + primeNumbers.join(", ");
+            
+            if(primeNumbers.length > 0){
+                document.getElementById("ans1").innerHTML = "Prime Numbers Are: " + primeNumbers.join(", ");
+            } else {
+                document.getElementById("ans1").innerHTML = "There are no prime numbers.....";
+            }
         });
     </script>
 
