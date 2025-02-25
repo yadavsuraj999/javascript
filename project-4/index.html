@@ -89,6 +89,14 @@
                     return;
                 }
 
+                if(u1.value === u2.value){
+                    Swal.fire({
+                        icon: "error",
+                        title: "Oops...",
+                        text: "Input Cannot be Same!",
+                    });
+                }
+
                 let inputValue = input1.value.trim();
                 let base = parseInt(u1.value);
                 if (isNaN(parseInt(inputValue, base))) {
