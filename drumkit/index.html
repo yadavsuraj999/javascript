@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern To-Do List</title>
+
+
+    <link rel="stylesheet" href="./assets/css/bootstrap.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
+
+<body>
+    <section class="drumkit-section">
+        <div class="container">
+
+            <div class="row gap-3 text-center d-flex justify-content-center align-items-center vh-100">
+                <div class="col border box daba " data-code="65">
+                    <h2 class="">A</h2>
+                    <p class="text-danger fw-bold">CLAP</p>
+                </div>
+                <div class="col border box daba " data-code="83">
+                    <h2 class="">S</h2>
+                    <p class="text-danger fw-bold">HIHAT</p>
+                </div>
+                <div class="col border box daba " data-code="68">
+                    <h2 class="">D</h2>
+                    <p class="text-danger fw-bold">KICK</p>
+                </div>
+                <div class="col border box daba " data-code="70">
+                    <h2 class="">F</h2>
+                    <p class="text-danger fw-bold">OPENHAT</p>
+                </div>
+                <div class="col border box daba " data-code="71">
+                    <h2 class="">G</h2>
+                    <p class="text-danger fw-bold">BOOM</p>
+                </div>
+                <div class="col border box daba " data-code="72">
+                    <h2 class="">H</h2>
+                    <p class="text-danger fw-bold">RIDE</p>
+                </div>
+                <div class="col border box daba " data-code="74">
+                    <h2 class="">J</h2>
+                    <p class="text-danger fw-bold">SNARE</p>
+                </div>
+                <div class="col border box daba " data-code="75">
+                    <h2 class="">K</h2>
+                    <p class="text-danger fw-bold">TOM</p>
+                </div>
+                <div class="col border box daba " data-code="76">
+                    <h2 class="">L</h2>
+                    <p class="text-danger fw-bold">TINK</p>
+                </div>
+            </div>
+
+            <audio data-code="65" src="./assets/songs/clap.wav"></audio>
+            <audio data-code="83" src="./assets/songs/hihat.wav"></audio>
+            <audio data-code="68" src="./assets/songs/kick.wav"></audio>
+            <audio data-code="70" src="./assets/songs/openhat.wav"></audio>
+            <audio data-code="71" src="./assets/songs/boom.wav"></audio>
+            <audio data-code="72" src="./assets/songs/ride.wav"></audio>
+            <audio data-code="74" src="./assets/songs/snare.wav"></audio>
+            <audio data-code="75" src="./assets/songs/tom.wav"></audio>
+            <audio data-code="76" src="./assets/songs/tink.wav"></audio>
+        </div>
+    </section>
+
+    <script>
+
+        window.addEventListener("keydown", function (e) {
+            let audio = document.querySelector(`audio[data-code="${e.keyCode}"]`);
+            let boxes = document.querySelector(`.box[data-code="${e.keyCode}"]`);
+
+            if (!audio) {
+                return;
+            }
+            audio.currentTime = 0
+            audio.play();
+
+            boxes.classList.remove("daba")
+
+        })
+
+        window.addEventListener("keyup", function (e) {
+            let boxes = document.querySelector(`.box[data-code="${e.keyCode}"]`);
+            boxes.classList.add("daba")
+
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern To-Do List</title>
+
+    <!-- Bootstrap & FontAwesome -->
+    <link rel="stylesheet" href="./assets/css/bootstrap.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
+    
+    <style>
+        .content {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            height: 100vh;
+            background-image: url("https://www.shutterstock.com/image-illustration/dark-glowing-4k-wallpaper-desktop-260nw-2251606291.jpg");
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: cover;
+            color: white;
+            overflow: hidden;
+            padding-top: 30px;
+        }
+        
+        @keyframes gradientAnimation {
+            0% {
+                background-position: 0% 50%;
+            }
+            
+            100% {
+                background-position: 100% 50%;
+            }
+        }
+        
+        .todo-container {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(20px);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+            animation: fadeIn 1s ease-in-out;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        input,
+        select {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+        
+        input::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+        
+        input:focus,
+        select:focus {
+            transform: scale(1.05);
+        }
+        
+        .btn-custom {
+            width: 100%;
+            font-size: 18px;
+            border-radius: 10px;
+            color: white;
+            border: none;
+            padding: 12px;
+            font-weight: bold;
+            transition: all 0.3s ease-in-out;
+        }
+        
+        .btn-add {
+            background: linear-gradient(135deg, #06d6a0, #05a88a);
+        }
+        
+        .btn-reset {
+            background: linear-gradient(135deg, #ef476f, #d43f6b);
+        }
+        
+        .btn-custom:hover {
+            transform: scale(1.05);
+            filter: brightness(1.2);
+        }
+        
+        .task-container {
+            width: 100%;
+            max-width: 500px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+            overflow-y: auto;
+            max-height: 50vh;
+        }
+        
+        .task-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-left: 5px solid;
+            padding: 15px;
+            border-radius: 12px;
+            margin-top: 10px;
+            width: 100%;
+            text-align: left;
+            color: white;
+            transition: transform 0.3s, background 0.3s;
+            animation: fadeInTask 0.5s ease-in-out;
+        }
+        
+        .task-card:hover {
+            
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        @keyframes fadeInTask {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .low {
+            border-left-color: #06d6a0;
+        }
+        
+        .medium {
+            border-left-color: #ffb703;
+        }
+        
+        .high {
+            border-left-color: #ef476f;
+        }
+        
+        .delete-task {
+            float: right;
+            cursor: pointer;
+            color: #ef476f;
+            font-size: 18px;
+        }
+        
+        .delete-task:hover {
+            color: white;
+        }
+        </style>
+</head>
+
+<body>
+    <div class="content">
+        <div class="todo-container mt-5">
+            <h2><i class="fas fa-list-ul mb-4"></i> To-Do List</h2>
+            <input type="text" id="task" class="form-control mt-2" placeholder="✍️ Enter a task">
+            <select id="task-opt" class="form-control mt-3 mb-4">
+                <option value="">🎯 Select Priority</option>
+                <option value="1">🟢 Low</option>
+                <option value="2">🟠 Medium</option>
+                <option value="3">🔴 High</option>
+            </select>
+            <button id="btn-add" class="btn-custom btn-add mt-3"><i class="fas fa-plus-circle"></i> Add Task</button>
+            <button id="btn-reset" class="btn-custom btn-reset mt-2"><i class="fas fa-trash"></i> Reset</button>
+        </div>
+        
+        <div class="task-container" id="task-row"></div>
+    </div>
+    
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            const todoList = {
+                tasks: [],
+
+                getPriorityClass(priority) {
+                    return ["low", "medium", "high"][priority - 1] || "low";
+                },
+
+                getPriorityText(priority) {
+                    return ["🟢 Low", "🟠 Medium", "🔴 High"][priority - 1] || "🟢 Low";
+                },
+
+                addTask(name, priority) {
+                    if (name === "" || priority === "") {
+                        alert("⚠️ Task cannot be empty and priority must be selected!");
+                        return;
+                    }
+
+                    const task = { name, priority: parseInt(priority) };
+                    this.tasks.push(task);
+                    this.renderTasks();
+                    $("#task").val("");
+                    $("#task-opt").val("");
+                },
+
+                renderTasks() {
+                    $("#task-row").fadeOut(300, () => {
+                        $("#task-row").html("");
+                        this.tasks.forEach((task, index) => {
+                            let taskHtml = `
+                                <div class="task-card ${this.getPriorityClass(task.priority)}" data-index="${index}">
+                                    <h5>${task.name} <span class="delete-task"><i class="fas fa-times"></i></span></h5>
+                                    <p>${this.getPriorityText(task.priority)}</p>
+                                </div>
+                            `;
+                            $(taskHtml).hide().appendTo("#task-row").fadeIn(500);
+                        });
+                        $("#task-row").fadeIn(300);
+                    });
+                },
+
+                deleteTask(index) {
+                    this.tasks.splice(index, 1);
+                    this.renderTasks();
+                },
+
+                resetTasks() {
+                    this.tasks = [];
+                    this.renderTasks();
+                }
+            };
+
+            $("#btn-add").on("click", function () {
+                let taskName = $("#task").val().trim();
+                let taskPriority = $("#task-opt").val();
+                todoList.addTask(taskName, taskPriority);
+            });
+
+            $(document).on("click", ".delete-task", function () {
+                let index = $(this).closest(".task-card").data("index");
+                todoList.deleteTask(index);
+            });
+
+            $("#btn-reset").on("click", function () {
+                todoList.resetTasks();
+            });
+        });
+    </script>
+
+
+</body>
+
+</html>
