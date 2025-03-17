@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Management System</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Arial', sans-serif;
+            background-image: url('https://images.unsplash.com/photo-1607743882420-4412ee605bac?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDIxNnx8fGVufDB8fHx8fA%3D%3D');
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+        }
+
+        .container {
+            max-width: 800px;
+            margin-top: 40px;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(31, 13, 221, 0.461);
+            background-color: rgba(66, 151, 119, 0.354);
+        }
+
+        h2 {
+            color: #06ffa0;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        table {
+            margin-top: 20px;
+        }
+
+        th {
+            background-color: #007bff;
+            color: white;
+        }
+
+        input{
+            background-color: rgba(4, 158, 122, 0.629) !important;
+        }
+
+        input::placeholder{
+            color: black !important;
+        }
+
+        input:focus{
+            box-shadow: none !important;
+        }
+
+        .btn {
+            border-radius: 5px;
+            padding: 5px 12px;
+            background-color: #06ffa0;
+        }
+
+        .btn-edit {
+            background-color: #ffc107;
+            color: black;
+        }
+
+        .btn-delete {
+            background-color: #dc3545;
+            color: white;
+        }
+
+        .btn-edit:hover {
+            background-color: #e0a800;
+        }
+
+        .btn-delete:hover {
+            background-color: #c82333;
+        }
+
+        .form-control {
+            border-radius: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2><i class="fa-solid fa-user-graduate"></i> Student Management System</h2>
+        <form id="student-form" class="row g-3">
+            <div class="col-md-4">
+                <input type="text" id="name" class="form-control" placeholder="Student Name" required>
+            </div>
+            <div class="col-md-4">
+                <input type="text" id="Grid" class="form-control" placeholder="Grid" required>
+            </div>
+            <div class="col-md-4">
+                <input type="text" id="phone" class="form-control" placeholder="Phone Number" required>
+            </div>
+            <div class="col-12 text-center">
+                <button type="submit" id="submit-btn" class="btn">
+                    <i class="fa-solid fa-plus"></i> Add Student
+                </button>
+            </div>
+        </form>
+
+        <table class="table table-bordered table-hover mt-4">
+            <thead class="text-center">
+                <tr>
+                    <th>Name</th>
+                    <th>Grade</th>
+                    <th>Phone Number</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="student-list" class="text-center"></tbody>
+        </table>
+    </div>
+
+    <script>
+        class Student {
+            constructor(name, Grid, phone) {
+                this.name = name;
+                this.Grid = Grid;
+                this.phone = phone;
+            }
+        }
+
+        class StudentManager {
+            constructor() {
+                this.students = [];
+            }
+
+            addStudent(student) {
+                this.students.push(student);
+                this.render();
+            }
+
+            editStudent(index, updatedStudent) {
+                this.students[index] = updatedStudent;
+                this.render();
+            }
+
+            deleteStudent(index) {
+                this.students.splice(index, 1);
+                this.render();
+            }
+
+            render() {
+                const studentList = document.getElementById('student-list');
+                studentList.innerHTML = '';
+
+                this.students.forEach((student, index) => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${student.name}</td>
+                        <td>${student.Grid}</td>
+                        <td>${student.phone}</td>
+                        <td>
+                            <button class="btn btn-sm btn-edit" onclick="editStudent(${index})">
+                                <i class="fa-solid fa-pen-to-square"></i> Edit
+                            </button>
+                            <button class="btn btn-sm btn-delete" onclick="deleteStudent(${index})">
+                                <i class="fa-solid fa-trash"></i> Delete
+                            </button>
+                        </td>
+                    `;
+                    studentList.appendChild(row);
+                });
+            }
+        }
+
+        const manager = new StudentManager();
+
+        document.getElementById('student-form').addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            const name = document.getElementById('name').value;
+            const Grid = document.getElementById('Grid').value;
+            const phone = document.getElementById('phone').value;
+
+            const student = new Student(name, Grid, phone);
+            manager.addStudent(student);
+            this.reset();
+        });
+
+        function editStudent(index) {
+            const student = manager.students[index];
+            document.getElementById('name').value = student.name;
+            document.getElementById('Grid').value = student.Grid;
+            document.getElementById('phone').value = student.phone;
+
+            document.getElementById('submit-btn').innerHTML = '<i class="fa-solid fa-save"></i> Update';
+            document.getElementById('submit-btn').classList.remove('btn-primary');
+            document.getElementById('submit-btn').classList.add('btn-warning');
+
+            document.getElementById('submit-btn').onclick = function () {
+                const updatedStudent = new Student(
+                    document.getElementById('name').value,
+                    document.getElementById('Grid').value,
+                    document.getElementById('phone').value
+                );
+                manager.editStudent(index, updatedStudent);
+
+                document.getElementById('submit-btn').innerHTML = '<i class="fa-solid fa-plus"></i> Add Student';
+                document.getElementById('submit-btn').classList.remove('btn-warning');
+                document.getElementById('submit-btn').classList.add('btn-primary');
+                document.getElementById('student-form').reset();
+                document.getElementById('submit-btn').onclick = () => { };
+            };
+        }
+
+        function deleteStudent(index) {
+            manager.deleteStudent(index);
+        }
+    </script>
+
+</body>
+
+</html>
