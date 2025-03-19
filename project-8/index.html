@@ -93,9 +93,12 @@
                 document.getElementById("m").value = "";
                 document.getElementById("s").value = "";
 
-                if (totalSeconds == 0) {
-                    const duration = 15 * 1000,
-                        animationEnd = Date.now() + duration,
+         
+            } else {
+                clearInterval(timer);
+                
+                const duration = 1000,
+                        animationEnd =  duration,
                         defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
 
                     function randomInRange(min, max) {
@@ -103,10 +106,10 @@
                     }
 
                     const interval = setInterval(function () {
-                        const timeLeft = animationEnd - Date.now();
+                        const timeLeft = animationEnd;
 
                         if (timeLeft <= 0) {
-                            return clearInterval(interval);
+                            clearInterval(interval);
                         }
 
                         const particleCount = 50 * (timeLeft / duration);
@@ -124,7 +127,7 @@
                                 origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 },
                             })
                         );
-                    }, 250);
+                    }, 500);
 
                     Swal.fire({
                         title: "Yesterday is gone. Tomorrow has not yet come. We have only today. Let us begin",
@@ -143,13 +146,13 @@
                                 `
                         },
                         backdrop : false,
+                    }).then(()=>{
+                        clearInterval(interval)
                     });
 
                     let songs = document.getElementById("song")
                     songs.play()
-                }
-            } else {
-                clearInterval(timer);
+          
             }
         }
 
