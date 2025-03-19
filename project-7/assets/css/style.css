@@ -1,0 +1,111 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+    color: white;
+}
+
+.container {
+    max-width: 900px;
+    height: auto;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(15px);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.3);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+h2 {
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.form-control {
+    background: rgba(255, 255, 255, 0.1) !important;
+    color: white !important;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 12px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.form-control:focus {
+    background: rgba(255, 255, 255, 0.25) !important;
+    border-color: #00FFAA;
+    box-shadow: none;
+}
+
+.form-control::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.btn {
+    padding: 10px 16px;
+    font-weight: bold;
+    transition: 0.3s ease-in-out;
+    border-radius: 8px;
+}
+
+.btn-add {
+    background: #00FFAA;
+    color: black;
+    border: none;
+}
+
+.btn-add:hover {
+    background: #00cc88;
+}
+
+.btn-edit {
+    background-color: #ffc107;
+    color: black;
+    border: none;
+}
+
+.btn-delete {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+}
+
+.btn-edit:hover {
+    background-color: #e0a800;
+}
+
+.btn-delete:hover {
+    background-color: #c82333;
+}
+
+table {
+    margin-top: 20px;
+    background: rgba(255, 255, 255, 0.15) ;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 2px solid rgba(255, 255, 255, 0.4);
+}
+
+th {
+    background: rgba(0, 0, 0, 0.213)!important;
+    color: white !important;
+    border: 1px solid rgba(23, 245, 3, 0.3);
+    padding: 15px;
+    text-align: center;
+}
+
+td {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    padding: 12px;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+tr td{
+    border: 1px solid rgb(0, 255, 34);
+}

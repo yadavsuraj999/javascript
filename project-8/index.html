@@ -6,52 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Countdown Timer</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: #282c36;
-            color: white;
-        }
-
-        .timer-container {
-            text-align: center;
-            background: #1e1e2f;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-        }
-
-        .timers {
-            font-size: 3rem;
-            margin: 20px 0;
-        }
-
-        input {
-            width: 50px;
-            font-size: 1rem;
-            padding: 5px;
-            text-align: center;
-        }
-
-        button {
-            background: #ff4757;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            font-size: 1rem;
-            border-radius: 5px;
-            cursor: pointer;
-            margin: 5px;
-        }
-
-        button:hover {
-            background: #e84118;
-        }
-    </style>
+    <link rel="stylesheet" href="./assets/css/style.css">
 </head>
 
 <body>
@@ -68,6 +23,11 @@
         <button id="reset"><i class="fas fa-redo"></i> Reset</button>
     </div>
 
+    <audio id="song" src="./assets/song/mixkit-girls-audience-applause-510.wav"></audio>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/@tsparticles/confetti@3.0.3/tsparticles.confetti.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         let timer;
         let startBtn = document.getElementById("start");
@@ -75,8 +35,15 @@
         let resetBtn = document.getElementById("reset");
         let flag = false;
         let totalSeconds;
-        let isPlayed = false;
-        let parent;
+
+        const startTimer = () => {
+            let h = parseInt(document.getElementById("h").value) || 0;
+            let m = parseInt(document.getElementById("m").value) || 0;
+            let s = parseInt(document.getElementById("s").value) || 0;
+            totalSeconds = (h * 3600) + (m * 60) + s;
+
+            timer = setInterval(updateTime, 1000);
+        };
 
         startBtn.addEventListener("click", () => {
             if (flag) return;
@@ -89,20 +56,16 @@
 
             let child = pauseBtn.children[0]
             child.classList.toggle("fa-play")
-            if (timer){
+            if (timer) {
                 clearInterval(timer);
-                timer = null; 
-              
+                timer = null;
+
             } else {
                 timer = setInterval(updateTime, 1000);
             }
 
 
         });
-
-
-
-
 
         resetBtn.addEventListener("click", () => {
             clearInterval(timer);
@@ -113,16 +76,9 @@
             document.getElementById("timer").innerText = "00:00:00";
         });
 
-        const startTimer = () => {
-            let h = parseInt(document.getElementById("h").value) || 0;
-            let m = parseInt(document.getElementById("m").value) || 0;
-            let s = parseInt(document.getElementById("s").value) || 0;
-            totalSeconds = (h * 3600) + (m * 60) + s;
-
-            timer = setInterval(updateTime, 1000);
-        };
 
         function updateTime() {
+            flag = false;
             if (totalSeconds > 0) {
                 flag = true;
                 totalSeconds--;
@@ -133,6 +89,65 @@
                 min = min.toString().padStart(2, '0');
                 sec = sec.toString().padStart(2, '0');
                 document.getElementById("timer").innerText = `${hrs}:${min}:${sec}`;
+                document.getElementById("h").value = "";
+                document.getElementById("m").value = "";
+                document.getElementById("s").value = "";
+
+                if (totalSeconds == 0) {
+                    const duration = 15 * 1000,
+                        animationEnd = Date.now() + duration,
+                        defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
+
+                    function randomInRange(min, max) {
+                        return Math.random() * (max - min) + min;
+                    }
+
+                    const interval = setInterval(function () {
+                        const timeLeft = animationEnd - Date.now();
+
+                        if (timeLeft <= 0) {
+                            return clearInterval(interval);
+                        }
+
+                        const particleCount = 50 * (timeLeft / duration);
+
+                        // since particles fall down, start a bit higher than random
+                        confetti(
+                            Object.assign({}, defaults, {
+                                particleCount,
+                                origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 },
+                            })
+                        );
+                        confetti(
+                            Object.assign({}, defaults, {
+                                particleCount,
+                                origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 },
+                            })
+                        );
+                    }, 250);
+
+                    Swal.fire({
+                        title: "Yesterday is gone. Tomorrow has not yet come. We have only today. Let us begin",
+                        showClass: {
+                            popup: `
+                                animate__animated
+                                animate__fadeInUp
+                                animate__faster
+                                `
+                        },
+                        hideClass: {
+                            popup: `
+                                  animate__animated
+                                  animate__fadeOutDown
+                                  animate__faster
+                                `
+                        },
+                        backdrop : false,
+                    });
+
+                    let songs = document.getElementById("song")
+                    songs.play()
+                }
             } else {
                 clearInterval(timer);
             }
