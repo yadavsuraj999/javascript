@@ -33,6 +33,9 @@
         let startBtn = document.getElementById("start");
         let pauseBtn = document.getElementById("pause");
         let resetBtn = document.getElementById("reset");
+        let h = document.getElementById("h")
+        let m = document.getElementById("m")
+        let s = document.getElementById("s")
         let flag = false;
         let totalSeconds;
 
@@ -46,22 +49,44 @@
         };
 
         startBtn.addEventListener("click", () => {
-            if (flag) return;
-            startTimer();
+            if (h.value.trim() == "" && m.value.trim() == "" && s.value.trim() == "") {
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "Please Enter Value",
+                    backdrop: false
+                });
+                return
+            }else{
+
+                if (flag) return;
+                startTimer();
+            }
 
         });
 
         pauseBtn.addEventListener("click", () => {
-            clearInterval(timer)
+            if (h.value.trim() == "" && m.value.trim() == "" && s.value.trim() == "") {
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "Please Enter Value",
+                    backdrop: false
+                });
+                return
+            }else{
 
-            let child = pauseBtn.children[0]
-            child.classList.toggle("fa-play")
-            if (timer) {
-                clearInterval(timer);
-                timer = null;
-
-            } else {
-                timer = setInterval(updateTime, 1000);
+                clearInterval(timer)
+                
+                let child = pauseBtn.children[0]
+                child.classList.toggle("fa-play")
+                if (timer) {
+                    clearInterval(timer);
+                    timer = null;
+                    
+                } else {
+                    timer = setInterval(updateTime, 1000);
+                }
             }
 
 
@@ -89,76 +114,74 @@
                 min = min.toString().padStart(2, '0');
                 sec = sec.toString().padStart(2, '0');
                 document.getElementById("timer").innerText = `${hrs}:${min}:${sec}`;
-                document.getElementById("h").value = "";
-                document.getElementById("m").value = "";
-                document.getElementById("s").value = "";
+                if(totalSeconds == 0){
+                    document.getElementById("h").value = "";
+                    document.getElementById("m").value = "";
+                    document.getElementById("s").value = "";
+                }
 
-         
+
             } else {
                 clearInterval(timer);
-                
-                const duration = 1000,
-                        animationEnd =  duration,
-                        defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
 
-                    function randomInRange(min, max) {
-                        return Math.random() * (max - min) + min;
+                const duration = 1000,
+                    animationEnd = duration,
+                    defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
+
+                function randomInRange(min, max) {
+                    return Math.random() * (max - min) + min;
+                }
+
+                const interval = setInterval(function () {
+                    const timeLeft = animationEnd;
+
+                    if (timeLeft <= 0) {
+                        clearInterval(interval);
                     }
 
-                    const interval = setInterval(function () {
-                        const timeLeft = animationEnd;
+                    const particleCount = 50 * (timeLeft / duration);
 
-                        if (timeLeft <= 0) {
-                            clearInterval(interval);
-                        }
+                    // since particles fall down, start a bit higher than random
+                    confetti(
+                        Object.assign({}, defaults, {
+                            particleCount,
+                            origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 },
+                        })
+                    );
+                    confetti(
+                        Object.assign({}, defaults, {
+                            particleCount,
+                            origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 },
+                        })
+                    );
+                }, 500);
 
-                        const particleCount = 50 * (timeLeft / duration);
-
-                        // since particles fall down, start a bit higher than random
-                        confetti(
-                            Object.assign({}, defaults, {
-                                particleCount,
-                                origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 },
-                            })
-                        );
-                        confetti(
-                            Object.assign({}, defaults, {
-                                particleCount,
-                                origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 },
-                            })
-                        );
-                    }, 500);
-
-                    Swal.fire({
-                        title: "Yesterday is gone. Tomorrow has not yet come. We have only today. Let us begin",
-                        showClass: {
-                            popup: `
+                Swal.fire({
+                    title: "Yesterday is gone. Tomorrow has not yet come. We have only today. Let us begin",
+                    showClass: {
+                        popup: `
                                 animate__animated
                                 animate__fadeInUp
                                 animate__faster
                                 `
-                        },
-                        hideClass: {
-                            popup: `
+                    },
+                    hideClass: {
+                        popup: `
                                   animate__animated
                                   animate__fadeOutDown
                                   animate__faster
                                 `
-                        },
-                        backdrop : false,
-                    }).then(()=>{
-                        clearInterval(interval)
-                    });
+                    },
+                    backdrop: false,
+                }).then(() => {
+                    clearInterval(interval)
+                });
 
-                    let songs = document.getElementById("song")
-                    songs.play()
-          
+                let songs = document.getElementById("song")
+                songs.play()
+
             }
         }
-
-
-
-
     </script>
 </body>
 
