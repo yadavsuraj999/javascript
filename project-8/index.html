@@ -24,6 +24,7 @@
     </div>
 
     <audio id="song" src="./assets/song/mixkit-girls-audience-applause-510.wav"></audio>
+    <audio id="song2" src="./assets/song/beep_that_grows_louder.mp3"></audio>
 
 
     <script src="https://cdn.jsdelivr.net/npm/@tsparticles/confetti@3.0.3/tsparticles.confetti.bundle.min.js"></script>
@@ -36,6 +37,7 @@
         let h = document.getElementById("h")
         let m = document.getElementById("m")
         let s = document.getElementById("s")
+        let red = document.getElementById("red")
         let flag = false;
         let totalSeconds;
 
@@ -57,40 +59,39 @@
                     backdrop: false
                 });
                 return
-            }else{
-
+            } else {
                 if (flag) return;
                 startTimer();
             }
+            startBtn.disabled = true
 
         });
 
         pauseBtn.addEventListener("click", () => {
-            if (h.value.trim() == "" && m.value.trim() == "" && s.value.trim() == "") {
+            if (!totalSeconds || (h.value.trim() == "" && m.value.trim() == "" && s.value.trim() == "")) {
                 Swal.fire({
                     icon: "error",
                     title: "Oops...",
-                    text: "Please Enter Value",
+                    text: "Please Enter Time and Press Start Button",
                     backdrop: false
                 });
-                return
-            }else{
-
-                clearInterval(timer)
-                
-                let child = pauseBtn.children[0]
-                child.classList.toggle("fa-play")
-                if (timer) {
-                    clearInterval(timer);
-                    timer = null;
-                    
-                } else {
-                    timer = setInterval(updateTime, 1000);
-                }
+                return;
             }
 
-
+            let child = pauseBtn.children[0];
+            if (flag) {
+                clearInterval(timer);
+                flag = false;
+                child.classList.remove("fa-pause");
+                child.classList.add("fa-play");
+            } else {
+                timer = setInterval(updateTime, 1000);
+                flag = true;
+                child.classList.remove("fa-play");
+                child.classList.add("fa-pause");
+            }
         });
+
 
         resetBtn.addEventListener("click", () => {
             clearInterval(timer);
@@ -98,7 +99,8 @@
             document.getElementById("h").value = "";
             document.getElementById("m").value = "";
             document.getElementById("s").value = "";
-            document.getElementById("timer").innerText = "00:00:00";
+            document.getElementById("timer").innerHTML = "00:00:00";
+            document.getElementById("timer").classList.remove("text-danger")
         });
 
 
@@ -114,10 +116,20 @@
                 min = min.toString().padStart(2, '0');
                 sec = sec.toString().padStart(2, '0');
                 document.getElementById("timer").innerText = `${hrs}:${min}:${sec}`;
-                if(totalSeconds == 0){
+
+                if (totalSeconds <= 5) {
+                    document.getElementById("timer").classList.add("text-danger")
+                    let song2 = document.getElementById("song2")
+                    song2.currentTime = 0
+                    song2.play()
+                }
+                if (totalSeconds == 0) {
                     document.getElementById("h").value = "";
                     document.getElementById("m").value = "";
                     document.getElementById("s").value = "";
+                    document.getElementById("timer").classList.remove("text-danger")
+                    startBtn.disabled = false
+                    song2.pause();
                 }
 
 
@@ -141,7 +153,6 @@
 
                     const particleCount = 50 * (timeLeft / duration);
 
-                    // since particles fall down, start a bit higher than random
                     confetti(
                         Object.assign({}, defaults, {
                             particleCount,
@@ -178,6 +189,7 @@
                 });
 
                 let songs = document.getElementById("song")
+                songs.currentTime = 0
                 songs.play()
 
             }

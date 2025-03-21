@@ -53,3 +53,7 @@ button {
 button:hover {
     background: #e84118;
 }
+
+.text-danger{
+    color: red;
+}
