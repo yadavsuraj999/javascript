@@ -26,175 +26,113 @@
     <audio id="song" src="./assets/song/mixkit-girls-audience-applause-510.wav"></audio>
     <audio id="song2" src="./assets/song/alarm_beeps.mp3"></audio>
 
-
     <script src="https://cdn.jsdelivr.net/npm/@tsparticles/confetti@3.0.3/tsparticles.confetti.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         let timer;
-        let startBtn = document.getElementById("start");
-        let pauseBtn = document.getElementById("pause");
-        let resetBtn = document.getElementById("reset");
-        let h = document.getElementById("h")
-        let m = document.getElementById("m")
-        let s = document.getElementById("s")
-        let red = document.getElementById("red")
-        let flag = false;
+        let isRunning = false;
         let totalSeconds;
 
-        const startTimer = () => {
-            let h = parseInt(document.getElementById("h").value) || 0;
-            let m = parseInt(document.getElementById("m").value) || 0;
-            let s = parseInt(document.getElementById("s").value) || 0;
-            totalSeconds = (h * 3600) + (m * 60) + s;
+        const startBtn = document.getElementById("start");
+        const pauseBtn = document.getElementById("pause");
+        const resetBtn = document.getElementById("reset");
+        const h = document.getElementById("h");
+        const m = document.getElementById("m");
+        const s = document.getElementById("s");
+        const displayTimer = document.getElementById("timer");
+        const song = document.getElementById("song");
+        const song2 = document.getElementById("song2");
 
-            timer = setInterval(updateTime, 1000);
-        };
+        function startTimer() {
+            let hours = parseInt(h.value) || 0;
+            let minutes = parseInt(m.value) || 0;
+            let seconds = parseInt(s.value) || 0;
+            totalSeconds = (hours * 3600) + (minutes * 60) + seconds;
 
-        startBtn.addEventListener("click", () => {
-            if (h.value.trim() == "" && m.value.trim() == "" && s.value.trim() == "") {
-                Swal.fire({
-                    icon: "error",
-                    title: "Oops...",
-                    text: "Please Enter Value",
-                    backdrop: false
-                });
-                return
-            } else {
-                if (flag) return;
-                startTimer();
-            }
-            startBtn.disabled = true
-
-        });
-
-        pauseBtn.addEventListener("click", () => {
-            if (!totalSeconds || (h.value.trim() == "" && m.value.trim() == "" && s.value.trim() == "")) {
-                Swal.fire({
-                    icon: "error",
-                    title: "Oops...",
-                    text: "Please Enter Time and Press Start Button",
-                    backdrop: false
-                });
+            if (totalSeconds <= 0) {
+                Swal.fire({ icon: "error", title: "Oops...", text: "Please Enter Value", backdrop: false });
                 return;
             }
+            
+            if (!isRunning) {
+                timer = setInterval(updateTime, 1000);
+                isRunning = true;
+                startBtn.disabled = true;
+            }
+        }
 
-            let child = pauseBtn.children[0];
-            if (flag) {
+        startBtn.addEventListener("click", startTimer);
+
+        pauseBtn.addEventListener("click", () => {
+            if (!isRunning) return;
+
+            let icon = pauseBtn.children[0];
+            if (timer) {
                 clearInterval(timer);
-                flag = false;
-                child.classList.remove("fa-pause");
-                child.classList.add("fa-play");
+                timer = null;
+                icon.classList.replace("fa-pause", "fa-play");
                 song2.pause();
             } else {
                 timer = setInterval(updateTime, 1000);
-                flag = true;
-                child.classList.remove("fa-play");
-                child.classList.add("fa-pause");
+                icon.classList.replace("fa-play", "fa-pause");
             }
         });
-
 
         resetBtn.addEventListener("click", () => {
             clearInterval(timer);
-            flag = false;
-            document.getElementById("h").value = "";
-            document.getElementById("m").value = "";
-            document.getElementById("s").value = "";
-            document.getElementById("timer").innerHTML = "00:00:00";
-            document.getElementById("timer").classList.remove("text-danger")
+            timer = null;
+            isRunning = false;
+            h.value = "";
+            m.value = "";
+            s.value = "";
+            displayTimer.innerHTML = "00:00:00";
+            displayTimer.classList.remove("text-danger");
+            startBtn.disabled = false;
+            pauseBtn.children[0].classList.replace("fa-play", "fa-pause");
             song2.pause();
+            song2.currentTime = 0;
+            song.pause();
+            song.currentTime = 0;
         });
 
-
         function updateTime() {
-            flag = false;
             if (totalSeconds > 0) {
-                flag = true;
                 totalSeconds--;
-                let hrs = Math.floor(totalSeconds / 3600);
-                let min = Math.floor((totalSeconds % 3600) / 60);
-                let sec = totalSeconds % 60;
-                hrs = hrs.toString().padStart(2, '0');
-                min = min.toString().padStart(2, '0');
-                sec = sec.toString().padStart(2, '0');
-                document.getElementById("timer").innerText = `${hrs}:${min}:${sec}`;
+                let hrs = String(Math.floor(totalSeconds / 3600)).padStart(2, '0');
+                let min = String(Math.floor((totalSeconds % 3600) / 60)).padStart(2, '0');
+                let sec = String(totalSeconds % 60).padStart(2, '0');
+                displayTimer.innerText = `${hrs}:${min}:${sec}`;
 
                 if (totalSeconds <= 5) {
-                    document.getElementById("timer").classList.add("text-danger")
-                    let song2 = document.getElementById("song2")
-                    song2.currentTime = 0
-                    song2.play()
+                    displayTimer.classList.add("text-danger");
+                    song2.play();
                 }
-                if (totalSeconds == 0) {
-                    document.getElementById("h").value = "";
-                    document.getElementById("m").value = "";
-                    document.getElementById("s").value = "";
-                    document.getElementById("timer").classList.remove("text-danger")
-                    startBtn.disabled = false
+
+                if (totalSeconds === 0) {
+                    clearInterval(timer);
+                    timer = null;
+                    isRunning = false;
+                    startBtn.disabled = false;
+                    displayTimer.classList.remove("text-danger");
                     song2.pause();
+                    triggerConfetti();
+                    Swal.fire({
+                        title: "Time's Up!", backdrop: false
+                    }).then(() => song.play());
                 }
-
-
-            } else {
-                clearInterval(timer);
-
-                const duration = 1000,
-                    animationEnd = duration,
-                    defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
-
-                function randomInRange(min, max) {
-                    return Math.random() * (max - min) + min;
-                }
-
-                const interval = setInterval(function () {
-                    const timeLeft = animationEnd;
-
-                    if (timeLeft <= 0) {
-                        clearInterval(interval);
-                    }
-
-                    const particleCount = 50 * (timeLeft / duration);
-
-                    confetti(
-                        Object.assign({}, defaults, {
-                            particleCount,
-                            origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 },
-                        })
-                    );
-                    confetti(
-                        Object.assign({}, defaults, {
-                            particleCount,
-                            origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 },
-                        })
-                    );
-                }, 500);
-
-                Swal.fire({
-                    title: "Yesterday is gone. Tomorrow has not yet come. We have only today. Let us begin",
-                    showClass: {
-                        popup: `
-                                animate__animated
-                                animate__fadeInUp
-                                animate__faster
-                                `
-                    },
-                    hideClass: {
-                        popup: `
-                                  animate__animated
-                                  animate__fadeOutDown
-                                  animate__faster
-                                `
-                    },
-                    backdrop: false,
-                }).then(() => {
-                    clearInterval(interval)
-                });
-
-                let songs = document.getElementById("song")
-                songs.currentTime = 0
-                songs.play()
-
             }
+        }
+
+        function triggerConfetti() {
+            const duration = 3000;
+            const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
+
+            const interval = setInterval(() => {
+                if (duration <= 0) clearInterval(interval);
+                confetti({ ...defaults, particleCount: 50, origin: { x: Math.random(), y: Math.random() - 0.2 } });
+            }, 500);
+
+            setTimeout(() => clearInterval(interval), duration);
         }
     </script>
 </body>
