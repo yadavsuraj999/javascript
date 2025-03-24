@@ -8,41 +8,48 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="./assets/css/style.css">
-
 </head>
 
 <body>
-    <div class="container">
-        <h2><i class="fa-solid fa-user-graduate"></i> Student Management System</h2>
-        <form id="student-form" class="row g-3">
-            <div class="col-md-4">
-                <input type="text" id="name" class="form-control" placeholder="Student Name">
-            </div>
-            <div class="col-md-4">
-                <input type="text" id="grid" class="form-control" placeholder="Grid">
-            </div>
-            <div class="col-md-4">
-                <input type="text" id="phone" class="form-control" placeholder="Phone Number">
-            </div>
-            <div class="col-12 text-center">
-                <button type="submit" id="submit-btn" class="btn btn-add">
-                    <i class="fa-solid fa-plus"></i> Add Student
-                </button>
-            </div>
-        </form>
+    <section>
+        <div class="box-1">
+            <div class=" box">
+                <h2 class="text-white"><i class="fa-solid fa-user-graduate"></i> Student Management System</h2>
+                <form id="student-form" class="row g-3">
+                    <div class="col-md-4 ">
+                        <label for="name" class="fw-bold fs-5 text-white">Name</label>
+                        <input type="text" id="name" class="form-control border" placeholder="Student Name">
+                    </div>
+                    <div class="col-md-4">
+                        <label for="grid" class="fw-bold fs-5 text-white">grid</label>
+                        <input type="text" id="grid" class="form-control border" placeholder="Grid">
+                    </div>
+                    <div class="col-md-4 ">
+                        <label for="phone" class="fw-bold fs-5 text-white">phone</label>
+                        <input type="text" id="phone" class="form-control border" placeholder="Phone Number">
+                    </div>
+                    <div class="col-12 text-center">
+                        <button type="submit" id="submit-btn" class="btn btn-add">
+                            <i class="fa-solid fa-plus"></i> Add Student
+                        </button>
+                    </div>
+                </form>
 
-        <table class="table mt-4">
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Grade</th>
-                    <th>Phone</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody id="student-list"></tbody>
-        </table>
-    </div>
+
+                <table class="table mt-4">
+                    <thead class="">
+                        <tr>
+                            <th>Name</th>
+                            <th>Grid</th>
+                            <th>Phone</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="student-list"></tbody>
+                </table>
+            </div>
+        </div>
+    </section>
 
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -58,7 +65,7 @@
         class StudentManager {
             constructor() {
                 this.students = [];
-                this.editIndex = null; 
+                this.editIndex = null;
             }
 
             addStudent(student) {
@@ -68,7 +75,7 @@
 
             editStudent(index, updatedStudent) {
                 this.students[index] = updatedStudent;
-                this.editIndex = null; 
+                this.editIndex = null;
                 this.render();
             }
 
@@ -122,10 +129,10 @@
             }
             const student = new Student(name, grid, phone);
 
-            if(manager.students.some((val)=>{
-               
+            if (manager.students.some((val) => {
+
                 return val.grid == grid;
-            })){
+            })) {
                 Swal.fire({
                     icon: "error",
                     title: "Oops...",
@@ -134,9 +141,18 @@
                 });
                 return;
             }
-         
-            
+            if (manager.students.some((val) => {
 
+                return val.phone == phone;
+            })) {
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "Phone Already Exist",
+                    backdrop: false
+                });
+                return;
+            }
             if (editIndex !== null) {
                 manager.editStudent(editIndex, student);
                 document.getElementById("submit-btn").innerHTML = '<i class="fa-solid fa-plus"></i> Add Student';

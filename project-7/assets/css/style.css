@@ -1,13 +1,22 @@
-body {
-    font-family: 'Poppins', sans-serif;
+section {
     background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
     padding: 20px;
     color: white;
 }
+
+.box-1 {
+    min-height: 100vh;
+}
+
+.box {
+    border: 5px dashed rgb(216, 199, 199);
+    padding: 50px;
+    border-radius: 5px;
+}
+
 
 .container {
     max-width: 900px;
@@ -84,14 +93,14 @@ h2 {
 
 table {
     margin-top: 20px;
-    background: rgba(255, 255, 255, 0.15) ;
+    background: rgba(255, 255, 255, 0.15);
     border-radius: 10px;
     overflow: hidden;
     border: 2px solid rgba(255, 255, 255, 0.4);
 }
 
 th {
-    background: rgba(0, 0, 0, 0.213)!important;
+    background: rgba(0, 0, 0, 0.213) !important;
     color: white !important;
     border: 1px solid rgba(23, 245, 3, 0.3);
     padding: 15px;
@@ -106,6 +115,57 @@ td {
     border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
-tr td{
+tr td {
     border: 1px solid rgb(0, 255, 34);
+}
+
+@media (max-width: 768px) {
+    .box {
+        padding: 20px;
+    }
+
+    .container {
+        padding: 15px;
+    }
+
+    .form-control {
+        padding: 10px;
+        font-size: 14px;
+    }
+
+    .btn {
+        padding: 8px 12px;
+        font-size: 14px;
+    }
+
+    table {
+        display: block;
+        width: 100%;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+    th {
+        width: 100%;
+    }
+}
+
+@media (max-width: 576px) {
+    h2 {
+        font-size: 20px;
+    }
+
+    .form-control {
+        font-size: 12px;
+        padding: 8px;
+    }
+
+    .btn {
+        font-size: 12px;
+        padding: 6px 10px;
+    }
+
+    table {
+        font-size: 12px;
+    }
 }
