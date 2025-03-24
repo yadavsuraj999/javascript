@@ -84,6 +84,7 @@
                 flag = false;
                 child.classList.remove("fa-pause");
                 child.classList.add("fa-play");
+                song2.pause();
             } else {
                 timer = setInterval(updateTime, 1000);
                 flag = true;
@@ -101,6 +102,7 @@
             document.getElementById("s").value = "";
             document.getElementById("timer").innerHTML = "00:00:00";
             document.getElementById("timer").classList.remove("text-danger")
+            song2.pause();
         });
 
 
