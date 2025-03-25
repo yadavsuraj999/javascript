@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./assets/css/bootstrap.css">
+</head>
+
+<body class="100-vh d-flex align-items-center justify-content-center mt-5">
+    <table class="border" cellpadding="10" cellspacing="10">
+        <thead class="border">
+            <tr>
+                <th class="border bg-dark text-white">Name</th>
+                <th class="border bg-dark text-white">GRID</th>
+                <th class="border bg-dark text-white">Email</th>
+            </tr>
+        </thead>
+        <tbody id="dataTable">
+            <!-- <tr></tr>
+            <tr></tr>
+            <tr></tr> -->
+        </tbody>
+    </table>
+
+    <!-- <h1 id="demo">name : </h1> -->
+
+    <script>
+        const students = JSON.parse(localStorage.getItem("students"));
+        
+        let data = document.getElementById("dataTable");
+        data.innerHTML = "";
+
+        students.forEach((student) => {
+            let row  = `<tr>
+                <td class="border">${student.Name}</td>
+                <td class="border">${student.Grid}</td>
+                <td class="border">${student.Email}</td>
+            </tr>`
+            data.innerHTML += row;
+        });
+
+    </script>
+</body>
+
+</html>

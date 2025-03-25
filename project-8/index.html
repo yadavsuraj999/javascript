@@ -32,7 +32,6 @@
         let timer;
         let isRunning = false;
         let totalSeconds;
-
         const startBtn = document.getElementById("start");
         const pauseBtn = document.getElementById("pause");
         const resetBtn = document.getElementById("reset");
@@ -42,6 +41,56 @@
         const displayTimer = document.getElementById("timer");
         const song = document.getElementById("song");
         const song2 = document.getElementById("song2");
+        let quotes = [
+            {
+                quote: "You miss 100% of the shots you don’t take.",
+                author: "Wayne Gretzky"
+            },
+            {
+                quote: "In the middle of every difficulty lies opportunity.",
+                author: "Albert Einstein"
+            },
+            {
+                quote: "Success is not final, failure is not fatal: It is the courage to continue that counts.",
+                author: "Winston Churchill"
+            },
+            {
+                quote: "Be yourself; everyone else is already taken.",
+                author: "Oscar Wilde"
+            },
+            {
+                quote: "The only way to do great work is to love what you do.",
+                author: "Steve Jobs"
+            },
+            {
+                quote: "It is never too late to be what you might have been.",
+                author: "George Eliot"
+            },
+            {
+                quote: "The best way to predict the future is to create it.",
+                author: "Abraham Lincoln"
+            },
+            {
+                quote: "Life isn’t about finding yourself. Life is about creating yourself.",
+                author: "George Bernard Shaw"
+            },
+            {
+                quote: "Do one thing every day that scares you.",
+                author: "Eleanor Roosevelt"
+            },
+            {
+                quote: "Your time is limited, so don’t waste it living someone else’s life.",
+                author: "Steve Jobs"
+            },
+            {
+                quote: "You don’t have to be great to start, but you have to start to be great.",
+                author: "Zig Ziglar"
+            },
+            {
+                quote: "The harder you work for something, the greater you’ll feel when you achieve it.",
+                author: " Anonymous"
+            },
+        ]
 
         function startTimer() {
             let hours = parseInt(h.value) || 0;
@@ -137,8 +186,11 @@
 
                     setTimeout(() => clearInterval(interval), duration);
                     song.play();
+                    let val = parseInt(Math.random() * 10)
                     Swal.fire({
-                        title: "Time's Up!", backdrop: false
+                        title: `${quotes[val].quote}`,
+                        text: `- ${quotes[val].author}`,
+                        backdrop: false
                     }).then(() => {
                         h.value = "";
                         m.value = "";
