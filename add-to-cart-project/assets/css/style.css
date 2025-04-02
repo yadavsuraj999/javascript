@@ -76,10 +76,38 @@ body {
   cursor: pointer;
 }
 
-.box{
-  flex-wrap: nowrap;
+
+
+.image{
+  transition: 0.3s all linear;
 }
 
-.image.img:hover{
+.box-2{
+  overflow: hidden;
+}
+
+.image:hover{
     transform: scale(1.1);
+}
+
+
+.box-1:hover .btn-1{
+  color: #ffffff;
+  background: #FFD013;
+  background: -moz-linear-gradient(top, #FFD013 0%, #FFB718 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #FFD013), color-stop(100%, #FFB718));
+  background: -webkit-linear-gradient(top, #FFD013 0%, #FFB718 100%);
+  background: -o-linear-gradient(top, #FFD013 0%, #FFB718 100%);
+  background: -ms-linear-gradient(top, #FFD013 0%, #FFB718 100%);
+  background: linear-gradient(to bottom, #FFD013 0%, #FFB718 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFD013', endColorstr='#FFB718', GradientType=0);
+  filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+footer{
+  background: url('../image/bg_pttrn.png') repeat scroll 0 0 #414141;;
+  float: left;
+  width: 100%;
 }
