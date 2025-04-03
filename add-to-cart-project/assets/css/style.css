@@ -12,11 +12,34 @@
 .menu{
   font-size: 18px;
   color: #4e5a66;
+  cursor: pointer;
 }
+.menu li{
+  transition: 0.3s all linear;
+  
+}
+
+.menu li:hover{
+  color: #FFB718;
+} 
+
 .cart{
   color: #888;
   font-size: 28px;
 }
+
+.cart-btn{
+  cursor: pointer;
+  transition: 0.3s all linear;
+}
+
+.cart-btn:hover i{
+  color: #FFB718 !important;
+}
+.cart-btn:hover span{
+  color: #FFB718 !important;
+}
+
 
 .notification{
   color: #888;
@@ -110,4 +133,23 @@ footer{
   background: url('../image/bg_pttrn.png') repeat scroll 0 0 #414141;;
   float: left;
   width: 100%;
+}
+
+.menu-box{
+  z-index: 999;
+  /* left: 200px; */
+  top: 49px;
+}
+
+.hidden-menu{
+  font-size: 17px;
+  color: #414141;
+}
+.hidden-menu li{
+  cursor: pointer;
+  transition: 0.3s all linear;
+}
+
+.hidden-menu li:hover{
+  color: #FFB718;
 }

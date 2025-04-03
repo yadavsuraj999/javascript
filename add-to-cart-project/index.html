@@ -13,30 +13,43 @@
 
 <body>
     <header>
-        <div class="d-flex justify-content-center my-5">
-            <img src="./assets/image/logo.png" alt="" class="img-fluid">
-        </div>
-        <div class="d-flex justify-content-around">
-            <span class="fw-bold fs-4 d-lg-none">Menu</span>
-            <ul class="d-lg-flex d-none align-items-center m-0 gap-5 menu">
-                <li>Clip Earrings</li>
-                <li>Necklace</li>
-                <li>Pin</li>
-                <li>Ring</li>
-                <li>Watch</li>
-                <li>Pierced Earrings</li>
-            </ul>
-            <div>
-                <button type="button" class="btn border position-relative">
-                    <i class="ri-shopping-cart-fill cart"></i>
-                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill notification">
-                        99+
-                        <span class="visually-hidden">unread messages</span>
-                    </span>
-                </button>
+        <div class="container">
+            <div class="d-flex justify-content-center my-5">
+                <img src="./assets/image/logo.png" alt="" class="img-fluid">
+            </div>
+            <div class="d-flex justify-content-between position-relative">
+                <span class="fw-bold fs-4 d-lg-none text-center" id="menu-btn">Menu</span>
+                <ul class="d-lg-flex d-none align-items-center m-0 gap-5 menu">
+                    <li>Clip Earrings</li>
+                    <li>Necklace</li>
+                    <li>Pin</li>
+                    <li>Ring</li>
+                    <li>Watch</li>
+                    <li>Pierced Earrings</li>
+                </ul>
+                <div>
+                    <button type="button" class="btn p-0 position-relative cart-btn">
+                        <i class="ri-shopping-cart-fill cart"></i>
+                        <span
+                            class="position-absolute top-0 start-100 translate-middle badge rounded-pill notification">0
+                        </span>
+                    </button>
+                </div>
+                <div class="position-absolute border menu-box w-100 p-3 bg-white d-lg-none d-none" id="menu">
+                    <ul class="lh-lg p-0 hidden-menu">
+                        <li class="d-flex justify-content-between">Clip Earrings <i class="ri-add-large-line"></i></li>
+                        <li class="d-flex justify-content-between">Necklace <i class="ri-add-large-line"></i></li>
+                        <li class="d-flex justify-content-between">Pin <i class="ri-add-large-line"></i></li>
+                        <li class="d-flex justify-content-between">Ring <i class="ri-add-large-line"></i></li>
+                        <li class="d-flex justify-content-between">Watch <i class="ri-add-large-line"></i></li>
+                        <li class="d-flex justify-content-between">Pierced Earrings <i class="ri-add-large-line"></i>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
     </header>
+
     <section class="">
         <div>
             <div class="swiper mySwiper">
@@ -59,8 +72,9 @@
 
     <section class="my-5">
         <div class="container">
-            <div class="row gy-3 justify-content-center gap-4 box">
-                <div class="border box-1 col-md-3 col-12 p-3">
+            <div class="row gy-3 justify-content-center gap-4 box" id="row">
+
+                <div class="border box-1 col-md-3 col-12-center p-3" id="0">
                     <div class="border-bottom box-2">
                         <img src="./assets/image/22-205x195.jpg" alt="" class="image" width="100%">
                     </div>
@@ -68,119 +82,119 @@
                         Infinite Necklace
                     </h4>
                     <p class="fw-bold py-3">
-                        $241.99
+                        $241
                     </p>
                     <button class="btn-1">
                         <span>Add To Cart</span>
                     </button>
                 </div>
-                <div class="border box-1 col-md-3 col-12  p-3">
+                <div class="border box-1 col-md-3 col-12  p-3" id="1">
                     <div class="border-bottom box-2">
                         <img src="./assets/image/15-205x195.jpg" alt="" class="image" width="100%">
                     </div>
                     <h4 class="font">
-                        Infinite Necklace
+                        Angel City Ring
                     </h4>
                     <p class="fw-bold py-3">
-                        $241.99
+                        $122
                     </p>
                     <button class="btn-1">
                         <span>Add To Cart</span>
                     </button>
                 </div>
-                <div class="border box-1 col-md-3 col-12  p-3">
+                <div class="border box-1 col-md-3 col-12  p-3" id="2">
                     <div class="border-bottom box-2">
                         <img src="./assets/image/16-205x195.jpg" alt="" class="image" width="100%">
                     </div>
                     <h4 class="font">
-                        Infinite Necklace
+                        High Five Ring
                     </h4>
                     <p class="fw-bold py-3">
-                        $241.99
+                        $350
                     </p>
                     <button class="btn-1">
                         <span>Add To Cart</span>
                     </button>
                 </div>
-                <div class="border box-1 col-md-3 col-12  p-3">
+                <div class="border box-1 col-md-3 col-12  p-3" id="3">
                     <div class="border-bottom box-2">
                         <img src="./assets/image/30-205x195.jpg" alt="" class="image" width="100%">
                     </div>
                     <h4 class="font">
-                        Infinite Necklace
+                        Mojito Ring
                     </h4>
                     <p class="fw-bold py-3">
-                        $241.99
+                        $350
                     </p>
                     <button class="btn-1">
                         <span>Add To Cart</span>
                     </button>
                 </div>
-                <div class="border box-1 col-md-3 col-12  p-3">
+                <div class="border box-1 col-md-3 col-12  p-3" id="4">
                     <div class="border-bottom box-2">
                         <img src="./assets/image/19-205x195.jpg" alt="" class="image" width="100%">
                     </div>
                     <h4 class="font">
-                        Infinite Necklace
+                        Infinite Ring
                     </h4>
                     <p class="fw-bold py-3">
-                        $241.99
+                        $602
                     </p>
                     <button class="btn-1">
                         <span>Add To Cart</span>
                     </button>
                 </div>
-                <div class="border box-1 col-md-3 col-12  p-3">
+                <div class="border box-1 col-md-3 col-12  p-3" id="5">
                     <div class="border-bottom box-2">
                         <img src="./assets/image/14-205x195.jpg" alt="" class="image" width="100%">
                     </div>
                     <h4 class="font">
-                        Infinite Necklace
+                        Le Louvre Necklace
                     </h4>
                     <p class="fw-bold py-3">
-                        $241.99
+                        $110
                     </p>
                     <button class="btn-1">
                         <span>Add To Cart</span>
                     </button>
                 </div>
-                <div class="border box-1 col-md-3 col-12  p-3">
+                <div class="border box-1 col-md-3 col-12  p-3" id="6">
                     <div class="border-bottom box-2">
                         <img src="./assets/image/3-205x195.jpg" alt="" class="image" width="100%">
                     </div>
                     <h4 class="font">
-                        Infinite Necklace
+                        Curtain Call Necklace
                     </h4>
                     <p class="fw-bold py-3">
-                        $241.99
+                        $780
                     </p>
                     <button class="btn-1">
                         <span>Add To Cart</span>
                     </button>
                 </div>
-                <div class="border box-1 col-md-3 col-12  p-3">
+                <div class="border box-1 col-md-3 col-12  p-3" id="7">
                     <div class="border-bottom box-2">
                         <img src="./assets/image/17-205x195.jpg" alt="" class="image" width="100%">
                     </div>
                     <h4 class="font">
-                        Infinite Necklace
+                        Lapis Ring
                     </h4>
                     <p class="fw-bold py-3">
-                        $241.99
+                        $687
                     </p>
                     <button class="btn-1">
                         <span>Add To Cart</span>
                     </button>
                 </div>
-                <div class="border box-1 col-md-3 col-12  p-3">
+                <div class="border box-1 col-md-3 col-12  p-3" id="8">
                     <div class="border-bottom box-2">
                         <img src="./assets/image/20-205x195.jpg" alt="" class="image" width="100%">
                     </div>
                     <h4 class="font">
-                        Infinite Necklace
+                        Lapis Ring
                     </h4>
                     <p class="fw-bold py-3">
-                        $241.99
+                        $587
                     </p>
                     <button class="btn-1">
                         <span>Add To Cart</span>
@@ -211,6 +225,7 @@
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="./assets/js/node.js"></script>
     <script>
         var swiper = new Swiper(".mySwiper", {
             spaceBetween: 30,
