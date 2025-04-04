@@ -51,24 +51,87 @@
     </header>
 
     <section class="">
-        <div>
-            <div class="swiper mySwiper">
-                <div class="swiper-wrapper">
-                    <div class="swiper-slide">
-                        <img src="./assets/image/mainbanner1-1920x600.jpg" alt="">
-                    </div>
-                    <div class="swiper-slide">
-                        <img src="./assets/image/mainbanner3-1920x600.jpg" alt="">
-                    </div>
-                    <div class="swiper-slide">
-                        <img src="./assets/image/mainbanner2-1920x600.jpg" alt="">
-                    </div>
-                </div>
-                <div class="swiper-button-next"></div>
-                <div class="swiper-button-prev"></div>
+        <div class="breadcrumb-section text-center">
+            <div class="container">
+                <h2>Cart</h2>
+                <nav class="theme-breadcrumb d-flex justify-content-center">
+                    <ol class="breadcrumb ">
+                        <li class="breadcrumb-item ">
+                            <a href="index.html">Home</a>
+                        </li>
+                        <li class="breadcrumb-item active fs-5">Cart</li>
+                    </ol>
+                </nav>
             </div>
         </div>
     </section>
+
+    <section class="cart-section py-5">
+        <div class="container" >
+            <div class="table-responsive">
+                <table class="table text-center align-middle">
+                    <thead class="table-dark">
+                        <tr>
+                            <th scope="col">Image</th>
+                            <th scope="col">Product Name</th>
+                            <th scope="col">Price</th>
+                            <th scope="col">Quantity</th>
+                            <th scope="col">Total</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="cart-item">
+                        <!-- <tr>
+                            <td>
+                                <img src="./assets/image/22-205x195.jpg" alt="Infinite Necklace" class="img-fluid" style="max-width: 100px;">
+                            </td>
+                            <td>
+                                <strong class="fs-5">Infinite Necklace</strong>
+                            </td>
+                            <td>
+                                <span class="fs-5">$15.00</span>
+                            </td>
+                            <td>
+                                <div class="d-flex justify-content-center align-items-center gap-2">
+                                    <button class="btn btn-outline-secondary btn-sm px-2">
+                                        <i class="ri-arrow-left-s-line"></i>
+                                    </button>
+                                    <span class="border px-3 py-1 rounded bg-light">1</span>
+                                    <button class="btn btn-outline-secondary btn-sm px-2">
+                                        <i class="ri-arrow-right-s-line"></i>
+                                    </button>
+                                </div>
+                            </td>
+                            <td>
+                                <span class="fs-5">$15.00</span>
+                            </td>
+                            <td>
+                                <button class="btn btn-outline-danger btn-sm">
+                                    <i class="ri-delete-bin-6-line"></i>
+                                </button>
+                            </td>
+                        </tr> -->
+                    </tbody>
+                    <tfoot class="border-top">
+                        <tr>
+                            <td colspan="4" class="text-end fw-bold">Total Price:</td>
+                            <td colspan="2" class="text-start fs-4">$15.00</td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+    
+        </div>
+        <!-- <div class="row mt-4">
+            <div class="col-6">
+                <a href="category-page(category-slider).html" class="btn btn-outline-dark w-100">Continue Shopping</a>
+            </div>
+            <div class="col-6">
+                <a href="checkout.html" class="btn btn-dark w-100">Check Out</a>
+            </div>
+        </div> -->
+    </section>
+    
 
     <section class="my-5">
         <div class="container">
@@ -96,27 +159,8 @@
         </div>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <script src="./assets/js/node.js"></script>
-    <script>
-        var swiper = new Swiper(".mySwiper", {
-            spaceBetween: 30,
-            centeredSlides: true,
-            autoplay: {
-                delay: 3500,
-                disableOnInteraction: false,
-                Infinity: true
-            },
-            pagination: {
-                el: ".swiper-pagination",
-                clickable: true,
-            },
-            navigation: {
-                nextEl: ".swiper-button-next",
-                prevEl: ".swiper-button-prev",
-            },
-        });
-    </script>
+    <script src="./assets/js/cart.js"></script>
+
 </body>
 
 </html>
