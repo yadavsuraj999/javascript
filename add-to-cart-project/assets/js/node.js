@@ -48,14 +48,29 @@ let cartarr = [{
 let menu = document.getElementById("menu-btn")
 let menubox = document.getElementById("menu")
 let row = document.getElementById("row")
+let addcart = document.getElementById("addcart")
+let counter = document.getElementById("counter")
 let cartArr = JSON.parse(localStorage.getItem("cartArray")) || []
+
+
 function addToCart(productid) {
     let item = cartarr.find((obj) => {
         return obj.id == productid
     })
-    cartArr.push(item)
-    console.log(cartArr);
+
+    let productIdx = cartArr.findIndex((obj) => {
+        return productId == obj.id;
+    })
+
+    if (productIdx != -1) {
+        cartArr[productIdx].quantity++;
+    } else {
+        item.quantity = 1;
+        cartArr.push(item);
+        // swal.fire("Product Added Successfully...")
+    }
     localStorage.setItem("cartArray", JSON.stringify(cartArr))
+    counter.innerHTML = productArr.length;
 }
 
 menu.addEventListener("click", function () {
@@ -76,7 +91,7 @@ cartarr.forEach((product, idx) => {
                         ${product.price}
                     </p>
                     <button class="btn-1" onclick="addToCart(${product.id})">
-                        <span>Add To Cart</span>
+                        <span id="addcart">Add To Cart</span>
                     </button>
                 </div>`
 })

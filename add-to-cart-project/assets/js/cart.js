@@ -1,6 +1,9 @@
 let cart = document.getElementById("cart-item")
 let cartarr = JSON.parse(localStorage.getItem("cartArray")) || [] 
+let counter = document.getElementById("counter")
+let cartBody = document.getElementById("cart-body")
 
+counter.innerHTML = cartarr.length;
 
 cartarr.forEach((item, idx)=>{
     cart.innerHTML += `<div class="table-responsive">
