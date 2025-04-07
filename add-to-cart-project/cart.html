@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add To Cart</title>
+    <title>Jewellery/cart.com</title>
     <link rel="stylesheet" href="./assets/css/bootstrap.css">
     <link rel="stylesheet" href="./assets/css/style.css">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet" />
@@ -31,7 +31,7 @@
                     <button type="button" class="btn p-0 position-relative cart-btn">
                         <i class="ri-shopping-cart-fill cart"></i>
                         <span
-                            class="position-absolute top-0 start-100 translate-middle badge rounded-pill notification">0
+                            class="position-absolute top-0 start-100 translate-middle badge rounded-pill notification" id="counter">0
                         </span>
                     </button>
                 </div>
@@ -56,10 +56,10 @@
                 <h2>Cart</h2>
                 <nav class="theme-breadcrumb d-flex justify-content-center">
                     <ol class="breadcrumb ">
+                        <li class="breadcrumb-item active fs-5" id="">Home</li>
                         <li class="breadcrumb-item ">
-                            <a href="index.html">Home</a>
+                            <a href="index.html">Cart</a>
                         </li>
-                        <li class="breadcrumb-item active fs-5">Cart</li>
                     </ol>
                 </nav>
             </div>
@@ -68,11 +68,11 @@
 
     <section class="cart-section py-5">
         <div class="container" >
-            <div class="table-responsive" id="">
+            <div class="table-responsive text-center" id="emty-cart">
                 <table class="table text-center align-middle">
                     <thead class="table-dark">
                         <tr>
-                            <th scope="col">Image</th>
+                            <th scope="col">image</th>
                             <th scope="col">Product Name</th>
                             <th scope="col">Price</th>
                             <th scope="col">Quantity</th>
@@ -80,56 +80,17 @@
                             <th scope="col">Action</th>
                         </tr>
                     </thead>
-                    <tbody id="cart-item" id="cart-body">
-                        <!-- <tr>
-                            <td>
-                                <img src="./assets/image/22-205x195.jpg" alt="Infinite Necklace" class="img-fluid" style="max-width: 100px;">
-                            </td>
-                            <td>
-                                <strong class="fs-5">Infinite Necklace</strong>
-                            </td>
-                            <td>
-                                <span class="fs-5">$15.00</span>
-                            </td>
-                            <td>
-                                <div class="d-flex justify-content-center align-items-center gap-2">
-                                    <button class="btn btn-outline-secondary btn-sm px-2">
-                                        <i class="ri-arrow-left-s-line"></i>
-                                    </button>
-                                    <span class="border px-3 py-1 rounded bg-light">1</span>
-                                    <button class="btn btn-outline-secondary btn-sm px-2">
-                                        <i class="ri-arrow-right-s-line"></i>
-                                    </button>
-                                </div>
-                            </td>
-                            <td>
-                                <span class="fs-5">$15.00</span>
-                            </td>
-                            <td>
-                                <button class="btn btn-outline-danger btn-sm">
-                                    <i class="ri-delete-bin-6-line"></i>
-                                </button>
-                            </td>
-                        </tr> -->
-                    </tbody>
-                    <tfoot class="border-top">
-                        <tr>
-                            <td colspan="4" class="text-end fw-bold">Total Price:</td>
-                            <td colspan="2" class="text-start fs-4">$15.00</td>
+                    <tbody id="cart-item"></tbody>
+                    <tfoot class="border-top" >
+                        <tr id="">
+                            <td colspan="4" class="text-end fw-bold fs-5">Total Price:</td>
+                            <td colspan="2" class="text-start fs-4" id="totalamount"></td>
                         </tr>
                     </tfoot>
                 </table>
             </div>
     
         </div>
-        <!-- <div class="row mt-4">
-            <div class="col-6">
-                <a href="category-page(category-slider).html" class="btn btn-outline-dark w-100">Continue Shopping</a>
-            </div>
-            <div class="col-6">
-                <a href="checkout.html" class="btn btn-dark w-100">Check Out</a>
-            </div>
-        </div> -->
     </section>
     
 
@@ -137,30 +98,12 @@
         <div class="container">
             <div class="row gy-3 justify-content-center gap-4 box" id="row"></div>
         </div>
+
+        
     </section>
 
-    <footer>
-        <div class="text-center my-4">
-            <div class="d-flex gap-sm-2 justify-content-center">
-                <span class="text-white">Specials</span>
-                <span class="text-white">Affiliates</span>
-                <span class="text-white">Gift Vouchers</span>
-                <span class="text-white">Brands</span>
-                <span class="text-white">Returns</span>
-                <span class="text-white">Site Map</span>
-                <span class="text-white">Contact Us</span>
-            </div>
-            <p class="text-white">Powered By OpenCart Your Store © 2025</p>
-            <div>
-                <span><img src="./assets/image/payment-3.jpg" alt=""></span>
-                <span><img src="./assets/image/payment-2.jpg" alt=""></span>
-                <span><img src="./assets/image/payment-1.jpg" alt=""></span>
-            </div>
-        </div>
-    </footer>
-
     <script src="./assets/js/cart.js"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 
 </html>

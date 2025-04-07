@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add To Cart</title>
+    <title>Jewellery.com</title>
     <link rel="stylesheet" href="./assets/css/bootstrap.css">
     <link rel="stylesheet" href="./assets/css/style.css">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet" />
@@ -28,7 +28,7 @@
                     <li>Pierced Earrings</li>
                 </ul>
                 <div>
-                    <button type="button" class="btn p-0 position-relative cart-btn">
+                    <button type="button" class="btn p-0 position-relative cart-btn" onclick="location.href='cart.html'">
                         <i class="ri-shopping-cart-fill cart"></i>
                         <span
                             class="position-absolute top-0 start-100 translate-middle badge rounded-pill notification" id="counter">0
@@ -98,6 +98,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="./assets/js/node.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         var swiper = new Swiper(".mySwiper", {
             spaceBetween: 30,
