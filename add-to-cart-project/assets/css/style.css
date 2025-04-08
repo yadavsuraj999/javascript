@@ -98,6 +98,7 @@ body {
   line-height: 28px;
   cursor: pointer;
   transition: 0.1s all linear;
+  border: 1px solid #9b9a9a;
 }
 
 

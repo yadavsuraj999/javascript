@@ -30,12 +30,12 @@ function disPlayCart() {
 
         document.getElementById("emty-cart").innerHTML = `
         <div>
-            <img src="./assets/image/1800917.webp" alt="" class="img-fluid" >
+            <img src="./assets/image/1800917.webp" alt="" class="img-fluid">
             <h4>Your cart is empty</h4>
         </div>
         <button class="btn btn-outline-warning" onclick="window.location.href='index.html'">
             <i class="ri-arrow-left-s-line"></i>
-            Continue Shopping
+            Return to shop
         </button>`
         cart.style.textAlign = "center"
         document.getElementById("totalamount").innerHTML = 0
@@ -59,11 +59,11 @@ function disPlayCart() {
                                 <td>
                                     <div class="d-flex justify-content-center align-items-center gap-2">
                                         <button class="btn btn-outline-secondary btn-sm px-2" onclick="addQuantity(${idx},-1)">
-                                            <i class="ri-arrow-left-s-line"></i>
+                                            <i class="ri-subtract-line"></i>
                                         </button>
                                         <span class="border px-3 py-1 rounded bg-light">${item.quantity}</span>
                                         <button class="btn btn-outline-secondary btn-sm px-2" onclick="addQuantity(${idx},1)">
-                                            <i class="ri-arrow-right-s-line"></i>
+                                            <i class="ri-add-line"></i>
                                         </button>
                                     </div>
                                 </td>
