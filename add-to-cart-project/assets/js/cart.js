@@ -30,10 +30,12 @@ function disPlayCart() {
 
         document.getElementById("emty-cart").innerHTML = `
         <div>
-<img src="./assets/image/Add to Cart-rafiki.png" alt="" class="img-fluid" style="max-width: 600px;">
-</div>
-<button>
-            return to shop
+            <img src="./assets/image/1800917.webp" alt="" class="img-fluid" >
+            <h4>Your cart is empty</h4>
+        </div>
+        <button class="btn btn-outline-warning" onclick="window.location.href='index.html'">
+            <i class="ri-arrow-left-s-line"></i>
+            Continue Shopping
         </button>`
         cart.style.textAlign = "center"
         document.getElementById("totalamount").innerHTML = 0
