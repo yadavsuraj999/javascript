@@ -104,7 +104,15 @@ body {
 
 
 .image{
-  transition: 0.1s all linear;
+  transition: 0.3s all linear;
+}
+
+.main-box{
+  transition: 0.3s all linear;
+}
+.main-box:hover{
+  border: #FFD013 1px solid !important; 
+  box-shadow: #FFB718 0px 0px 2px 0px;
 }
 
 .box-2{

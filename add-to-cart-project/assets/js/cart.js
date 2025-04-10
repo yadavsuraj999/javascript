@@ -48,7 +48,7 @@ function disPlayCart() {
         total += item.price * item.quantity;
         cart.innerHTML += `<tr>
                                 <td>
-                                    <img src="${item.image}" alt="Infinite Necklace" class="img-fluid" style="max-width: 100px;">
+                                    <img src="${item.image}" alt="Infinite Necklace" class="img-fluid border" style="max-width: 100px;">
                                 </td>
                                 <td>
                                     <strong class="fs-5">${item.product}</strong>

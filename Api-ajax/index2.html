@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Responsive GitHub Profile Card</title>
+    <link rel="stylesheet" href="./assets/css/style2.css">
+</head>
+
+<body>
+    <div>
+        <input type="text" placeholder="Enter GitHub username" id="input" />
+        <button id="btn">Submit</button>
+    </div>
+
+    <div class="card">
+        <div class="banner"></div>
+        <div class="profile">
+            <img class="avatar" src="https://avatars.githubusercontent.com/u/9919?s=200&v=4" alt="Avatar"
+                id="profile-picture" />
+            <div class="name">
+                <h2 id="name">GitHub <span class="verified">✔ Verified</span></h2>
+                <p class="handle" id="userID">@github</p>
+            </div>
+            <p class="bio" id="bio">
+                The world’s leading software development platform. Empowering over 100M developers.
+            </p>
+
+            <div class="stats">
+                <div><strong id="repos">3</strong><br />Repos</div>
+                <div><strong id="followers">3.5M</strong><br />Followers</div>
+                <div><strong id="following">0</strong><br />Following</div>
+            </div>
+            <p id="created">Created at: -</p>
+            <button class="follow-btn">Follow</button>
+        </div>
+    </div>
+    <script>
+        let input = document.getElementById("input");
+        let btn = document.getElementById("btn");
+
+
+
+        btn.addEventListener("click", function () {
+            let xhr = new XMLHttpRequest();
+            xhr.open("GET", `https://api.github.com/users/${input.value}`);
+            xhr.onload = function () {
+                let userData = JSON.parse(xhr.responseText)
+                console.log(userData);
+                document.getElementById("profile-picture").src = userData.avatar_url;
+                document.getElementById("userID").innerText = userData.login;
+                document.getElementById("bio").innerHTML = userData.bio;
+                document.getElementById("repos").innerHTML = userData.public_repos;
+                document.getElementById("followers").innerHTML = userData.followers;
+                document.getElementById("following").innerHTML = userData.following;
+                document.getElementById("created").innerHTML = `Created at: ${userData.created_at}`;
+            };
+            xhr.send();
+        })
+    </script>
+</body>
+
+</html>

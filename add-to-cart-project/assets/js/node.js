@@ -62,7 +62,6 @@ function addToCart(productid) {
     
 
     if (productIdx != -1) {
-        // cartArr[productIdx].quantity++;
         Swal.fire({
             title: "Already Added To Cart",
             icon: "warning",
@@ -97,7 +96,7 @@ menu.addEventListener("click", function () {
 
 
 cartarr.forEach((product, idx) => {
-    row.innerHTML += `<div class="border box-1 col-md-3 col-12-center p-3" id="1">
+    row.innerHTML += `<div class="border main-box box-1 col-md-3 col-12-center p-3" id="1">
                     <div class="border-bottom box-2">
                         <img src="${product.image}" alt="" class="image" width="100%">
                     </div>
