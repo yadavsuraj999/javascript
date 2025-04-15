@@ -36,11 +36,6 @@
     </div>
     <script>
         let tbody = document.getElementById("tbody")
-        // let searchInput = document.getElementById("searchInput")
-        // let statename = document.getElementById("state-name")
-        // let totalcase = document.getElementById("total-case")
-        // let recoveredcase = document.getElementById("recovered")
-        // let deaths = document.getElementById("deaths")
         document.getElementById("search-state").addEventListener("click", function () {
             const URL = `https://api.rootnet.in/covid19-in/stats/latest`
             fetch(URL).then(function (res) {
