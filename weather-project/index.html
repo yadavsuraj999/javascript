@@ -1,372 +1,238 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Weather UI</title>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700&display=swap" rel="stylesheet">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather UI</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <style>
+        * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
 
-    body, html {
-      height: 100%;
-      font-family: 'Outfit', sans-serif;
-    }
+  body, html {
+    height: 100%;
+    font-family: 'Outfit', sans-serif;
+  }
 
-    .weather-wrapper {
-      height: 100%;
-      width: 100%;
-      background-image: url('./assets/image/default.jpg');
-      background-size: cover;
-      background-position: center;
-      color: white;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-start;
-      padding: 30px 20px;
-    }
+  .weather-wrapper {
+    height: 100%;
+    width: 100%;
+    background-image: url('../image/pexels-tahir-shaw-50609-186980.jpg');
+    background-size: cover;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 30px 20px;
+  }
 
-    .search-box {
-      margin-bottom: 30px;
-      width: 100%;
-      max-width: 500px;
-    }
+  .search-box {
+    margin-bottom: 30px;
+    width: 100%;
+    max-width: 500px;
+  }
 
-    .search-box div {
-      display: flex;
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 50px;
-      overflow: hidden;
-      backdrop-filter: blur(10px);
-      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-    }
+  .search-box div {
+    display: flex;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50px;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  }
 
-    .search-box input {
-      flex: 1;
-      padding: 14px 20px;
-      border: none;
-      outline: none;
-      background: transparent;
-      color: white;
-      font-size: 1rem;
-    }
+  .search-box input {
+    flex: 1;
+    padding: 14px 20px;
+    border: none;
+    outline: none;
+    background: transparent;
+    color: white;
+    font-size: 1rem;
+  }
 
-    .search-box button {
-      background: #4dd0e1;
-      color: #243b55;
-      border: none;
-      padding: 0 20px;
-      cursor: pointer;
-      font-size: 1rem;
-      transition: background 0.3s;
-    }
+  .search-box button {
+    background: #4dd0e1;
+    color: #243b55;
+    border: none;
+    padding: 0 20px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background 0.3s;
+  }
 
-    .search-box button:hover {
-      background: #26c6da;
-    }
+  .search-box button:hover {
+    background: #26c6da;
+  }
 
+  .weather-card {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    padding: 40px;
+    width: 100%;
+    max-width: 500px;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.3);
+    backdrop-filter: blur(10px);
+    text-align: center;
+  }
+
+  .location {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+
+  .main-weather {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+
+  .main-weather i {
+    font-size: 3rem;
+    margin-bottom: 10px;
+    color: #fecd52;
+  }
+
+  .temp {
+    font-size: 3.5rem;
+    font-weight: 300;
+  }
+
+  .description {
+    font-size: 1.1rem;
+    font-style: italic;
+    color: #ccc;
+    margin-top: 5px;
+  }
+
+  .details {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 30px;
+  }
+
+  .details .item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 0.9rem;
+  }
+
+  .details .item i {
+    font-size: 1.5rem;
+    margin-bottom: 6px;
+    color: #4dd0e1;
+  }
+
+  @media (max-width: 500px) {
     .weather-card {
-      background: rgba(255, 255, 255, 0.05);
-      border-radius: 20px;
-      padding: 40px;
-      width: 100%;
-      max-width: 500px;
-      box-shadow: 0 12px 30px rgba(0,0,0,0.3);
-      backdrop-filter: blur(10px);
-      text-align: center;
-    }
-
-    .location {
-      font-size: 1.8rem;
-      font-weight: 700;
-      margin-bottom: 10px;
-    }
-
-    .main-weather {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      margin-bottom: 20px;
-    }
-
-    .main-weather img {
-      width: 80px;
-      height: 80px;
+      padding: 25px;
     }
 
     .temp {
-      font-size: 3.5rem;
-      font-weight: 300;
+      font-size: 3rem;
     }
 
-    .feels-like {
-      font-size: 1rem;
-      margin-top: 5px;
-      color: #ddd;
+    .main-weather i {
+      font-size: 2.5rem;
     }
 
-    .description {
-      font-size: 1.1rem;
-      font-style: italic;
-      color: #ccc;
-      margin-top: 5px;
-    }
-
-    .details {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-around;
-      margin-top: 30px;
-    }
-
-    .details .item {
-      display: flex;
+    .search-box form {
       flex-direction: column;
-      align-items: center;
-      font-size: 0.9rem;
-      margin: 10px;
+      border-radius: 15px;
     }
 
-    .details .item i {
-      font-size: 1.5rem;
-      margin-bottom: 6px;
-      color: #4dd0e1;
-    }
-
-    #loading {
-      font-size: 1.2rem;
-      margin-bottom: 20px;
-      display: none;
-    }
-
-    .forecast-container {
-      margin-top: 40px;
-      max-width: 900px;
+    .search-box button {
       width: 100%;
-      color: white;
-      text-align: center;
+      border-radius: 0 0 15px 15px;
     }
-
-    .forecast-container h2 {
-      margin-bottom: 20px;
-      font-size: 1.5rem;
-      font-weight: 500;
-    }
-
-    .forecast-cards {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 15px;
-    }
-
-    .forecast-card {
-      background: rgba(255, 255, 255, 0.08);
-      border-radius: 16px;
-      padding: 20px;
-      width: 120px;
-      backdrop-filter: blur(8px);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-      text-align: center;
-    }
-
-    .forecast-card img {
-      width: 50px;
-      height: 50px;
-    }
-
-    .forecast-card .day {
-      font-weight: 600;
-      margin-top: 10px;
-    }
-
-    .forecast-card .temp {
-      font-size: 1.1rem;
-      margin: 5px 0;
-    }
-
-    @media (max-width: 500px) {
-      .weather-card {
-        padding: 25px;
-      }
-
-      .temp {
-        font-size: 3rem;
-      }
-
-      .search-box form {
-        flex-direction: column;
-        border-radius: 15px;
-      }
-
-      .search-box button {
-        width: 100%;
-        border-radius: 0 0 15px 15px;
-      }
-    }
-  </style>
+  }
+    </style>
 </head>
+
 <body>
 
-  <div class="weather-wrapper">
-    <div id="loading">Loading weather...</div>
+    <div class="weather-wrapper">
 
-    <div class="search-box">
-      <div>
-        <input type="text" placeholder="Search for a city..." name="city" id="enter-city"/>
-        <button type="button" id="search-city"><i class="fas fa-search"></i></button>
-      </div>
+        <!-- Search Bar -->
+        <div class="search-box">
+            <div>
+                <input type="text" placeholder="Search for a city..." name="city" id="enter-city" />
+                <button type="button" id="search-city"><i class="fas fa-search"></i></button>
+            </div>
+        </div>
+
+        <!-- Weather Card -->
+        <div class="weather-card">
+            <div class="location" id="location-info">Surat</div>
+            <div class="main-weather">
+                <img src="./assets/image/01d@2x.png" alt="" id="icon">
+                <div class="temp" id="temp"></div>
+                <div class="description" id="descriptions">Sunny</div>
+            </div>
+            <div class="details">
+                <div class="item">
+                    <i class="fas fa-tint"></i>
+                    <div>Humidity</div>
+                    <div id="humidity">48%</div>
+                </div>
+                <div class="item">
+                    <i class="fas fa-wind"></i>
+                    <div>Wind</div>
+                    <div id="wind">7.5km/h</div>
+                </div>
+                <div class="item">
+                    <i class="fas fa-tachometer-alt"></i>
+                    <div>Pressure</div>
+                    <div id="Pressure">1015 hPa</div>
+                </div>
+            </div>
+        </div>
     </div>
+    <script>
+        let entercity = document.getElementById("enter-city");
+        let locationinfo = document.getElementById("location-info");
+        let icon = document.getElementById("icon")
+        let temp = document.getElementById("temp")
+        let descriptions = document.getElementById("descriptions")
+        let humidity = document.getElementById("humidity")
+        let wind = document.getElementById("wind")
+        let Pressure = document.getElementById("Pressure")
+        let country = document.getElementById("country")
 
-    <div class="weather-card">
-      <div class="location" id="location-info">Surat</div>
-      <div class="main-weather">
-        <img src="./assets/image/01d@2x.png" alt="" id="icon">
-        <div class="temp" id="temp"></div>
-        <div class="feels-like" id="feels-like"></div>
-        <div class="description" id="descriptions">Sunny</div>
-      </div>
-      <div class="details">
-        <div class="item">
-          <i class="fas fa-tint"></i>
-          <div>Humidity</div>
-          <div id="humidity">48%</div>
-        </div>
-        <div class="item">
-          <i class="fas fa-wind"></i>
-          <div>Wind</div>
-          <div id="wind">7.5km/h</div>
-        </div>
-        <div class="item">
-          <i class="fas fa-tachometer-alt"></i>
-          <div>Pressure</div>
-          <div id="Pressure">1015 hPa</div>
-        </div>
-        <div class="item">
-          <i class="fas fa-sun"></i>
-          <div>Sunrise</div>
-          <div id="sunrise"></div>
-        </div>
-        <div class="item">
-          <i class="fas fa-moon"></i>
-          <div>Sunset</div>
-          <div id="sunset"></div>
-        </div>
-      </div>
-    </div>
+        document.getElementById("search-city").addEventListener("click", function () {
+            if (entercity.value.trim() != "") {
+                let key = 'e2914b6ba88326537067612706415607'
 
-    <div class="forecast-container" id="forecast-container">
-      <h2>5-Day Forecast</h2>
-      <div class="forecast-cards" id="forecast-cards"></div>
-    </div>
-  </div>
+                let URL = `https://api.openweathermap.org/data/2.5/weather?q=${entercity.value}&units=metric&appid=${key}`
 
-  <script>
-    let entercity = document.getElementById("enter-city");
-    let locationinfo = document.getElementById("location-info");
-    let icon = document.getElementById("icon");
-    let temp = document.getElementById("temp");
-    let descriptions = document.getElementById("descriptions");
-    let humidity = document.getElementById("humidity");
-    let wind = document.getElementById("wind");
-    let Pressure = document.getElementById("Pressure");
-    let feelsLike = document.getElementById("feels-like");
-    let sunrise = document.getElementById("sunrise");
-    let sunset = document.getElementById("sunset");
+                fetch(URL).then(function (res) {
+                    return res.json();
+                }).then(function (res) {
+                    console.log(res)
+                    locationinfo.innerHTML = `${res.name}<span>, ${res.sys.country}</span>`
+                    icon.src = `https://openweathermap.org/img/wn/${res.weather[0].icon}@2x.png`;
+                    temp.innerHTML = `${res.main.temp}`
+                    descriptions.innerHTML = `${res.weather[0].description}`
+                    humidity.innerHTML = `${res.main.humidity}%`
+                    wind.innerHTML = `${res.wind.speed}km/h`
+                    Pressure.innerHTML = `${res.main.pressure}hPa`
+                })
 
-    const API_KEY = 'e2914b6ba88326537067612706415607';
-
-    function setBackground(weatherMain) {
-      const wrapper = document.querySelector('.weather-wrapper');
-      let bgUrl = "";
-      switch (weatherMain.toLowerCase()) {
-        case 'clear': bgUrl = './assets/image/clear.jpg'; break;
-        case 'clouds': bgUrl = './assets/image/cloudy.jpg'; break;
-        case 'rain':
-        case 'drizzle': bgUrl = './assets/image/rainy.jpg'; break;
-        case 'thunderstorm': bgUrl = './assets/image/thunder.jpg'; break;
-        case 'snow': bgUrl = './assets/image/snow.jpg'; break;
-        case 'mist':
-        case 'fog': bgUrl = './assets/image/fog.jpg'; break;
-        default: bgUrl = './assets/image/default.jpg';
-      }
-      wrapper.style.backgroundImage = `url('${bgUrl}')`;
-    }
-
-    function formatTime(timestamp) {
-      const date = new Date(timestamp * 1000);
-      return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-    }
-
-    function updateWeatherUI(res) {
-      locationinfo.innerHTML = `${res.name}, ${res.sys.country}`;
-      icon.src = `https://openweathermap.org/img/wn/${res.weather[0].icon}@2x.png`;
-      temp.innerHTML = `${res.main.temp}°C`;
-      feelsLike.innerHTML = `Feels like: ${res.main.feels_like}°C`;
-      descriptions.innerHTML = `${res.weather[0].description}`;
-      humidity.innerHTML = `${res.main.humidity}%`;
-      wind.innerHTML = `${res.wind.speed}km/h`;
-      Pressure.innerHTML = `${res.main.pressure} hPa`;
-      sunrise.innerHTML = formatTime(res.sys.sunrise);
-      sunset.innerHTML = formatTime(res.sys.sunset);
-      setBackground(res.weather[0].main);
-    }
-
-    function fetchForecast(lat, lon) {
-      const forecastURL = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=metric&appid=${API_KEY}`;
-      fetch(forecastURL)
-        .then(res => res.json())
-        .then(data => {
-          let daily = {};
-          data.list.forEach(item => {
-            let date = new Date(item.dt_txt).toLocaleDateString("en-US", { weekday: 'short' });
-            if (!daily[date]) daily[date] = item;
-          });
-          renderForecast(Object.values(daily).slice(0, 5));
-        });
-    }
-
-    function renderForecast(forecastData) {
-      const container = document.getElementById("forecast-cards");
-      container.innerHTML = "";
-      forecastData.forEach(day => {
-        const card = document.createElement("div");
-        card.className = "forecast-card";
-        card.innerHTML = `
-          <div class="day">${new Date(day.dt_txt).toLocaleDateString("en-US", { weekday: 'short' })}</div>
-          <img src="https://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png">
-          <div class="temp">${Math.round(day.main.temp)}°C</div>
-          <div class="desc">${day.weather[0].main}</div>
-        `;
-        container.appendChild(card);
-      });
-    }
-
-    document.getElementById("search-city").addEventListener("click", function () {
-      if (entercity.value.trim() !== "") {
-        const city = entercity.value;
-        const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${API_KEY}`;
-        document.getElementById("loading").style.display = "block";
-        fetch(url)
-          .then(res => res.json())
-          .then(res => {
-            document.getElementById("loading").style.display = "none";
-            if (res.cod !== 200) {
-              alert("City not found. Try again!");
-              return;
+                entercity.value = ""
             }
-            updateWeatherUI(res);
-            fetchForecast(res.coord.lat, res.coord.lon);
-            entercity.value = "";
-          });
-      }
-    });
-  </script>
+        })
+    </script>
+
 </body>
+
 </html>
