@@ -29,9 +29,7 @@
                     <th class="text-center"><i class="fas fa-skull-crossbones"></i> Deaths</th>
                 </tr>
             </thead>
-            <tbody id="tbody">
-
-            </tbody>
+            <tbody id="tbody"></tbody>
         </table>
     </div>
     <script>
@@ -45,7 +43,6 @@
                 let state = states.find((name) => {
                     return name.loc.toLowerCase() == searchInput.value.toLowerCase()
                 })
-
                 tbody.innerHTML += `
                  <tr>
                     <td class="text-center" id="state-name">${state.loc}</td>
@@ -54,8 +51,6 @@
                     <td class="text-center" id="deaths">${state.deaths}</td>
                 </tr>
                 `
-
-
             })
         })
     </script>
