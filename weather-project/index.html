@@ -8,10 +8,168 @@
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="./assets/css/style.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            overflow-y: hidden;
+            height: 100vh;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        .weather-wrapper {
+            height: 100%;
+            width: 100%;
+            background-image: url('https://media.istockphoto.com/id/184304316/photo/clear-blue-sky-background-with-scattered-clouds.jpg?s=612x612&w=0&k=20&c=oGOHpTuDsHFdnYkGDloZIBWY_S78oY8KO_BUFUn3Am0=');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 30px 20px;
+        }
+
+        .search-box {
+            margin-bottom: 30px;
+            width: 100%;
+            max-width: 500px;
+        }
+
+        .search-box div {
+            display: flex;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50px;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .search-box input {
+            flex: 1;
+            padding: 14px 20px;
+            border: none;
+            outline: none;
+            background: transparent;
+            color: white;
+            font-size: 1rem;
+        }
+
+        .search-box button {
+            background: #4dd0e1;
+            color: #243b55;
+            border: none;
+            padding: 0 20px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background 0.3s;
+        }
+
+        .search-box button:hover {
+            background: #26c6da;
+        }
+
+        .weather-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 40px;
+            width: 100%;
+            max-width: 500px;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            text-align: center;
+        }
+
+        .location {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .main-weather {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .main-weather i {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            color: #fecd52;
+        }
+
+        .temp {
+            font-size: 3.5rem;
+            font-weight: 300;
+        }
+
+        .description {
+            font-size: 1.1rem;
+            font-style: italic;
+            color: #ccc;
+            margin-top: 5px;
+        }
+
+        .details {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 30px;
+        }
+
+        .details .item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: 0.9rem;
+        }
+
+        .details .item i {
+            font-size: 1.5rem;
+            margin-bottom: 6px;
+            color: #4dd0e1;
+        }
+
+        @media (max-width: 500px) {
+            .weather-card {
+                padding: 25px;
+            }
+
+            .temp {
+                font-size: 3rem;
+            }
+
+            .main-weather i {
+                font-size: 2.5rem;
+            }
+
+            .search-box form {
+                flex-direction: column;
+                border-radius: 15px;
+            }
+
+            .search-box button {
+                width: 100%;
+                border-radius: 0 0 15px 15px;
+            }
+        }
+
+        video {
+            position: absolute;
+            width: 100%;
+            left: 0;
+        }
+    </style>
 </head>
 
 <body>
-
+    <video src="" autoplay muted loop id="video"></video>
     <div class="weather-wrapper">
 
         <!-- Search Bar -->
@@ -27,7 +185,7 @@
             <div class="location" id="location-info">Surat</div>
             <div class="main-weather">
                 <img src="./assets/image/01d@2x.png" alt="" id="icon">
-                <div class="temp" id="temp"></div>
+                <div class="temp" id="temp">37.41 °C</div>
                 <div class="description" id="descriptions">Sunny</div>
             </div>
             <div class="details">
@@ -52,34 +210,58 @@
     <script>
         let entercity = document.getElementById("enter-city");
         let locationinfo = document.getElementById("location-info");
-        let icon = document.getElementById("icon")
-        let temp = document.getElementById("temp")
-        let descriptions = document.getElementById("descriptions")
-        let humidity = document.getElementById("humidity")
-        let wind = document.getElementById("wind")
-        let Pressure = document.getElementById("Pressure")
+        let icon = document.getElementById("icon");
+        let temp = document.getElementById("temp");
+        let descriptions = document.getElementById("descriptions");
+        let humidity = document.getElementById("humidity");
+        let wind = document.getElementById("wind");
+        let Pressure = document.getElementById("Pressure");
+        let wrapper = document.getElementById("video");
+
         document.getElementById("search-city").addEventListener("click", function () {
-            if (entercity.value.trim() != "") {
-                let key = 'e2914b6ba88326537067612706415607'
+            if (entercity.value.trim() !== "") {
+                let key = 'e2914b6ba88326537067612706415607';
+                let URL = `https://api.openweathermap.org/data/2.5/weather?q=${entercity.value}&units=metric&appid=${key}`;
 
-                let URL = `https://api.openweathermap.org/data/2.5/weather?q=${entercity.value}&units=metric&appid=${key}`
+                fetch(URL)
+                    .then(function (res) {
+                        return res.json();
+                    })
+                    .then(function (res) {
+                        console.log(res);
+                        locationinfo.innerHTML = `${res.name}<span>, ${res.sys.country}</span>`;
+                        icon.src = `https://openweathermap.org/img/wn/${res.weather[0].icon}@2x.png`;
+                        temp.innerHTML = `${res.main.temp} °C`;
+                        descriptions.innerHTML = `${res.weather[0].description}`;
+                        humidity.innerHTML = `${res.main.humidity}%`;
+                        wind.innerHTML = `${res.wind.speed}km/h`;
+                        Pressure.innerHTML = `${res.main.pressure}hPa`;
+                        let iconID = res.weather[0].icon
+                        switch (iconID) {
+                            case "04d": {
+                                wrapper.src = "https://videos.pexels.com/video-files/856186/856186-hd_1920_1080_30fps.mp4"
+                                break;
+                            }
+                            case "01d": {
+                                wrapper.src = "https://videos.pexels.com/video-files/2605326/2605326-uhd_2560_1440_30fps.mp4"
+                                break;
+                            }
+                            // case "01d": {
+                            //     wrapper.src = "./assets/video/clearCluds.mp4"
+                            //     break;
+                            // }
 
-                fetch(URL).then(function (res) {
-                    return res.json();
-                }).then(function (res) {
-                    locationinfo.innerHTML = `${res.name}`
-                    icon.src = `https://openweathermap.org/img/wn/${res.weather[0].icon}@2x.png`;
-                    temp.innerHTML = `${res.main.temp}`
-                    descriptions.innerHTML = `${res.weather[0].description}`
-                    humidity.innerHTML = `${res.main.humidity}%`
-                    wind.innerHTML = `${res.wind.speed}km/h`
-                    Pressure.innerHTML = `${res.main.pressure}hPa`
-                })
+                            default:
+                                break;
+                        }
 
-                entercity.value = ""
+                    });
+
+                entercity.value = "";
             }
-        })
+        });
     </script>
+
 
 </body>
 

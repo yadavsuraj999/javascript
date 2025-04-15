@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>India COVID-19 Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="stylesheet" href="./assets/css/bootstrap.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet" />
+</head>
+
+<body>
+    <header>
+        <h1>
+            <i class="fas fa-virus-covid"></i> India COVID-19 Dashboard
+        </h1>
+    </header>
+    <div class="container">
+        <div class="d-flex ">
+            <input type="text" id="searchInput" class="rounded-start" placeholder="Search for a state...">
+            <button class="px-3 btn btn-dark rounded-end" id="search-state"><i class="ri-search-line"></i></button>
+        </div>
+        <table id="covidTable">
+            <thead>
+                <tr>
+                    <th class="text-center"><i class="fas fa-map-marker-alt"></i> State</th>
+                    <th class="text-center"><i class="fas fa-viruses"></i> Total Cases</th>
+                    <th class="text-center"><i class="fas fa-heartbeat"></i> Recovered</th>
+                    <th class="text-center"><i class="fas fa-skull-crossbones"></i> Deaths</th>
+                </tr>
+            </thead>
+            <tbody id="tbody"></tbody>
+        </table>
+
+    </div>
+    <script>
+        let tbody = document.getElementById("tbody")
+        document.getElementById("search-state").addEventListener("click", function () {
+            const URL = `https://api.rootnet.in/covid19-in/stats/latest`
+            fetch(URL).then(function (res) {
+                return res.json();
+            }).then(function (res) {
+                states = res.data.regional
+                let state = states.find((name) => {
+                    return name.loc.toLowerCase() == searchInput.value.toLowerCase()
+                })
+                tbody.innerHTML += `
+                 <tr>
+                    <td class="text-center" id="state-name">${state.loc}</td>
+                    <td class="text-center" id="total-case">${state.totalConfirmed}</td>
+                    <td class="text-center" id="recovered">${state.discharged}</td>
+                    <td class="text-center" id="deaths">${state.deaths}</td>
+                </tr>
+                `
+            })
+        })
+    </script>
+</body>
+
+</html>
