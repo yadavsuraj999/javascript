@@ -24,7 +24,6 @@
         .weather-wrapper {
             height: 100%;
             width: 100%;
-            background-image: url('https://media.istockphoto.com/id/184304316/photo/clear-blue-sky-background-with-scattered-clouds.jpg?s=612x612&w=0&k=20&c=oGOHpTuDsHFdnYkGDloZIBWY_S78oY8KO_BUFUn3Am0=');
             background-size: cover;
             background-repeat: no-repeat;
             background-position: center;
@@ -113,7 +112,7 @@
         .description {
             font-size: 1.1rem;
             font-style: italic;
-            color: #ccc;
+            color: #ffffff;
             margin-top: 5px;
         }
 
@@ -121,6 +120,10 @@
             display: flex;
             justify-content: space-around;
             margin-top: 30px;
+        }
+
+        input::placeholder {
+            color: whitesmoke;
         }
 
         .details .item {
@@ -160,16 +163,22 @@
             }
         }
 
+
+
         video {
             position: absolute;
-            width: 100%;
+            top: 0;
             left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
     </style>
 </head>
 
 <body>
-    <video src="" autoplay muted loop id="video"></video>
+    <video src="https://videos.pexels.com/video-files/30860541/13196927_640_360_25fps.mp4" autoplay muted loop
+        id="video"></video>
     <div class="weather-wrapper">
 
         <!-- Search Bar -->
@@ -238,18 +247,74 @@
                         Pressure.innerHTML = `${res.main.pressure}hPa`;
                         let iconID = res.weather[0].icon
                         switch (iconID) {
-                            case "04d": {
-                                wrapper.src = "https://videos.pexels.com/video-files/856186/856186-hd_1920_1080_30fps.mp4"
-                                break;
-                            }
                             case "01d": {
-                                wrapper.src = "https://videos.pexels.com/video-files/2605326/2605326-uhd_2560_1440_30fps.mp4"
+                                wrapper.src = "https://videos.pexels.com/video-files/30860541/13196927_640_360_25fps.mp4"
                                 break;
                             }
-                            // case "01d": {
-                            //     wrapper.src = "./assets/video/clearCluds.mp4"
-                            //     break;
-                            // }
+                            case "02d": {
+                                wrapper.src = "https://videos.pexels.com/video-files/30860541/13196927_640_360_25fps.mp4"
+                                break;
+                            }
+                            case "03d": {
+                                wrapper.src = "https://videos.pexels.com/video-files/31579321/13458105_640_360_30fps.mp4"
+                                break;
+                            }
+                            case "09d": {
+                                wrapper.src = "https://videos.pexels.com/video-files/31579321/13458105_640_360_30fps.mp4"
+                                break;
+                            }
+                            case "10d": {
+                                wrapper.src = "https://videos.pexels.com/video-files/31579321/13458105_640_360_30fps.mp4"
+                                break;
+                            }
+                            case "11d": {
+                                wrapper.src = "https://videos.pexels.com/video-files/31579321/13458105_640_360_30fps.mp4"
+                                break;
+                            }
+                            case "13d": {
+                                wrapper.src = "https://videos.pexels.com/video-files/3945764/3945764-sd_360_360_30fps.mp4"
+                                break;
+                            }
+                            case "15d": {
+                                wrapper.src = "https://videos.pexels.com/video-files/3945764/3945764-sd_360_360_30fps.mp4"
+                                break;
+                            }
+                            case "01n": {
+                                wrapper.src = "https://videos.pexels.com/video-files/1877846/1877846-hd_1920_1080_30fps.mp4"
+                                break;
+                            }
+                            case "02n": {
+                                wrapper.src = "https://videos.pexels.com/video-files/3903406/3903406-sd_640_360_30fps.mp4"
+                                break;
+                            }
+                            case "03n": {
+                                wrapper.src = "https://videos.pexels.com/video-files/3903406/3903406-sd_640_360_30fps.mp4"
+                                break;
+                            }
+                            case "04n": {
+                                wrapper.src = "https://videos.pexels.com/video-files/3903406/3903406-sd_640_360_30fps.mp4"
+                                break;
+                            }
+                            case "09n": {
+                                wrapper.src = "https://videos.pexels.com/video-files/3903406/3903406-sd_640_360_30fps.mp4"
+                                break;
+                            }
+                            case "10n": {
+                                wrapper.src = "https://videos.pexels.com/video-files/3903406/3903406-sd_640_360_30fps.mp4"
+                                break;
+                            }
+                            case "11n": {
+                                wrapper.src = "https://videos.pexels.com/video-files/3903406/3903406-sd_640_360_30fps.mp4"
+                                break;
+                            }
+                            case "13n": {
+                                wrapper.src = "https://videos.pexels.com/video-files/3945764/3945764-sd_360_360_30fps.mp4"
+                                break;
+                            }
+                            case "15n": {
+                                wrapper.src = "https://videos.pexels.com/video-files/3945764/3945764-sd_360_360_30fps.mp4"
+                                break;
+                            }
 
                             default:
                                 break;
