@@ -109,20 +109,29 @@
     </div>
 
     <script>
+        let errorMessage = document.getElementById("errorMessage")
         let searchInput = document.getElementById("searchInput")
         document.getElementById("search-state").addEventListener("click", function () {
             const URL = `https://api.rootnet.in/covid19-in/stats/latest`
-            fetch(URL).then(function (res) {
+            fetch(URL)
+            .then(function (res) {
                 return res.json();
-            }).then(function (res) {
+            })
+            .then(function (res) {
                 states = res.data.regional
                 let state = states.find((name) => {
                     return name.loc.toLowerCase() == searchInput.value.toLowerCase()
                 })
-                console.log(state)
                 document.getElementById("total-confirmed").innerHTML = state.totalConfirmed
                 document.getElementById("total-recovered").innerHTML = state.discharged
                 document.getElementById("total-deaths").innerHTML = state.deaths
+                errorMessage.style.display="none"
+            }).catch(function(err){
+                errorMessage.style.display="block"
+                document.getElementById("total-confirmed").innerHTML = "-"
+                document.getElementById("total-recovered").innerHTML = "-"
+                document.getElementById("total-deaths").innerHTML = "-"
+
             })
         })
     </script>

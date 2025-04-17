@@ -216,6 +216,7 @@
             </div>
         </div>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         let entercity = document.getElementById("enter-city");
         let locationinfo = document.getElementById("location-info");
@@ -237,93 +238,103 @@
                         return res.json();
                     })
                     .then(function (res) {
-                        console.log(res);
-                        locationinfo.innerHTML = `${res.name}<span>, ${res.sys.country}</span>`;
-                        icon.src = `https://openweathermap.org/img/wn/${res.weather[0].icon}@2x.png`;
-                        temp.innerHTML = `${res.main.temp} °C`;
-                        descriptions.innerHTML = `${res.weather[0].description}`;
-                        humidity.innerHTML = `${res.main.humidity}%`;
-                        wind.innerHTML = `${res.wind.speed}km/h`;
-                        Pressure.innerHTML = `${res.main.pressure}hPa`;
-                        let iconID = res.weather[0].icon
-                        switch (iconID) {
-                            case "01d": {
-                                wrapper.src = "https://videos.pexels.com/video-files/30860541/13196927_640_360_25fps.mp4"
-                                break;
+                            if (res.cod == 404) {
+                                Swal.fire({
+                                    icon: "error",
+                                    title: "Oops...",
+                                    text: res.message,
+                                    timer: 3000,
+                                    toast: true,
+                                    position: "top-start",
+                                    backdrop: false
+                                });
+                                return;
                             }
-                            case "02d": {
-                                wrapper.src = "https://videos.pexels.com/video-files/30860541/13196927_640_360_25fps.mp4"
-                                break;
-                            }
-                            case "03d": {
-                                wrapper.src = "https://videos.pexels.com/video-files/31579321/13458105_640_360_30fps.mp4"
-                                break;
-                            }
-                            case "09d": {
-                                wrapper.src = "https://videos.pexels.com/video-files/31579321/13458105_640_360_30fps.mp4"
-                                break;
-                            }
-                            case "10d": {
-                                wrapper.src = "https://videos.pexels.com/video-files/31579321/13458105_640_360_30fps.mp4"
-                                break;
-                            }
-                            case "11d": {
-                                wrapper.src = "https://videos.pexels.com/video-files/31579321/13458105_640_360_30fps.mp4"
-                                break;
-                            }
-                            case "13d": {
-                                wrapper.src = "https://videos.pexels.com/video-files/3945764/3945764-sd_360_360_30fps.mp4"
-                                break;
-                            }
-                            case "15d": {
-                                wrapper.src = "https://videos.pexels.com/video-files/3945764/3945764-sd_360_360_30fps.mp4"
-                                break;
-                            }
-                            case "01n": {
-                                wrapper.src = "https://videos.pexels.com/video-files/1877846/1877846-hd_1920_1080_30fps.mp4"
-                                break;
-                            }
-                            case "02n": {
-                                wrapper.src = "https://videos.pexels.com/video-files/3903406/3903406-sd_640_360_30fps.mp4"
-                                break;
-                            }
-                            case "03n": {
-                                wrapper.src = "https://videos.pexels.com/video-files/3903406/3903406-sd_640_360_30fps.mp4"
-                                break;
-                            }
-                            case "04n": {
-                                wrapper.src = "https://videos.pexels.com/video-files/3903406/3903406-sd_640_360_30fps.mp4"
-                                break;
-                            }
-                            case "09n": {
-                                wrapper.src = "https://videos.pexels.com/video-files/3903406/3903406-sd_640_360_30fps.mp4"
-                                break;
-                            }
-                            case "10n": {
-                                wrapper.src = "https://videos.pexels.com/video-files/3903406/3903406-sd_640_360_30fps.mp4"
-                                break;
-                            }
-                            case "11n": {
-                                wrapper.src = "https://videos.pexels.com/video-files/3903406/3903406-sd_640_360_30fps.mp4"
-                                break;
-                            }
-                            case "13n": {
-                                wrapper.src = "https://videos.pexels.com/video-files/3945764/3945764-sd_360_360_30fps.mp4"
-                                break;
-                            }
-                            case "15n": {
-                                wrapper.src = "https://videos.pexels.com/video-files/3945764/3945764-sd_360_360_30fps.mp4"
-                                break;
+                            locationinfo.innerHTML = `${res.name}<span>, ${res.sys.country}</span>`;
+                            icon.src = `https://openweathermap.org/img/wn/${res.weather[0].icon}@2x.png`;
+                            temp.innerHTML = `${res.main.temp} °C`;
+                            descriptions.innerHTML = `${res.weather[0].description}`;
+                            humidity.innerHTML = `${res.main.humidity}%`;
+                            wind.innerHTML = `${res.wind.speed}km/h`;
+                            Pressure.innerHTML = `${res.main.pressure}hPa`;
+                            let iconID = res.weather[0].icon
+                            switch (iconID) {
+                                case "01d": {
+                                    wrapper.src = "https://videos.pexels.com/video-files/30860541/13196927_640_360_25fps.mp4"
+                                    break;
+                                }
+                                case "02d": {
+                                    wrapper.src = "https://videos.pexels.com/video-files/30860541/13196927_640_360_25fps.mp4"
+                                    break;
+                                }
+                                case "03d": {
+                                    wrapper.src = "https://videos.pexels.com/video-files/31579321/13458105_640_360_30fps.mp4"
+                                    break;
+                                }
+                                case "09d": {
+                                    wrapper.src = "https://videos.pexels.com/video-files/31579321/13458105_640_360_30fps.mp4"
+                                    break;
+                                }
+                                case "10d": {
+                                    wrapper.src = "https://videos.pexels.com/video-files/31579321/13458105_640_360_30fps.mp4"
+                                    break;
+                                }
+                                case "11d": {
+                                    wrapper.src = "https://videos.pexels.com/video-files/31579321/13458105_640_360_30fps.mp4"
+                                    break;
+                                }
+                                case "13d": {
+                                    wrapper.src = "https://videos.pexels.com/video-files/3945764/3945764-sd_360_360_30fps.mp4"
+                                    break;
+                                }
+                                case "15d": {
+                                    wrapper.src = "https://videos.pexels.com/video-files/3945764/3945764-sd_360_360_30fps.mp4"
+                                    break;
+                                }
+                                case "01n": {
+                                    wrapper.src = "https://videos.pexels.com/video-files/1877846/1877846-hd_1920_1080_30fps.mp4"
+                                    break;
+                                }
+                                case "02n": {
+                                    wrapper.src = "https://videos.pexels.com/video-files/3903406/3903406-sd_640_360_30fps.mp4"
+                                    break;
+                                }
+                                case "03n": {
+                                    wrapper.src = "https://videos.pexels.com/video-files/3903406/3903406-sd_640_360_30fps.mp4"
+                                    break;
+                                }
+                                case "04n": {
+                                    wrapper.src = "https://videos.pexels.com/video-files/3903406/3903406-sd_640_360_30fps.mp4"
+                                    break;
+                                }
+                                case "09n": {
+                                    wrapper.src = "https://videos.pexels.com/video-files/3903406/3903406-sd_640_360_30fps.mp4"
+                                    break;
+                                }
+                                case "10n": {
+                                    wrapper.src = "https://videos.pexels.com/video-files/3903406/3903406-sd_640_360_30fps.mp4"
+                                    break;
+                                }
+                                case "11n": {
+                                    wrapper.src = "https://videos.pexels.com/video-files/3903406/3903406-sd_640_360_30fps.mp4"
+                                    break;
+                                }
+                                case "13n": {
+                                    wrapper.src = "https://videos.pexels.com/video-files/3945764/3945764-sd_360_360_30fps.mp4"
+                                    break;
+                                }
+                                case "15n": {
+                                    wrapper.src = "https://videos.pexels.com/video-files/3945764/3945764-sd_360_360_30fps.mp4"
+                                    break;
+                                }
+
+                                default:
+                                    break;
                             }
 
-                            default:
-                                break;
-                        }
-
-                    });
-
-                entercity.value = "";
-            }
+                        })
+                        entercity.value = "";
+                    }
         });
     </script>
 
