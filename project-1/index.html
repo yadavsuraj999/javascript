@@ -37,17 +37,18 @@
     <script src="./assets/js/jquery.js"></script>
     <script src="./assets/js/bootstrap.js"></script>
     <script>
+        let answer = document.getElementById("answer")
         function addition(v1, v2){
-            document.getElementById("answer").value = v1+v2
+            answer.value = v1+v2
         }
         function subraction(v1, v2){
-            document.getElementById("answer").value = v1-v2
+            answer.value = v1-v2
         }
         function multiplication(v1, v2){
-            document.getElementById("answer").value = v1*v2
+            answer.value = v1*v2
         }
         function divison(v1, v2){
-            document.getElementById("answer").value = v1/v2
+            answer.value = v1/v2
         }
         function clear(){
             document.getElementById("answer").value = ""
