@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Local Storage Practice</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f0f0f0;
+            padding: 40px;
+        }
+
+        .container {
+            max-width: 400px;
+            background-color: #fff;
+            padding: 25px;
+            margin: auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 12px;
+            margin: 15px 0;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 10px;
+            font-size: 16px;
+            border: none;
+            background-color: #4CAF50;
+            color: white;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .output {
+            margin-top: 20px;
+            font-weight: bold;
+            color: #555;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Local Storage Practice</h2>
+        <input type="text" id="nameInput" placeholder="Enter your name">
+        <button id="saveBtn">Save</button>
+        <button id="clearBtn" style="background-color: #f44336;">Clear</button>
+        <div class="output" id="outputArea">Your saved data will appear here.</div>
+    </div>
+
+    <script>
+        let input = document.getElementById("nameInput")
+        let savebtn = document.getElementById("saveBtn")
+        let clearBtn = document.getElementById("clearBtn")
+        let ans = document.getElementById("outputArea")
+
+        let localstr = JSON.parse(localStorage.getItem("info")) || []
+
+        savebtn.addEventListener("click", function(){
+            let name = input.value.trim();
+
+            if(name){
+                localstr.push(name);
+                localStorage.setItem("info", JSON.stringify(localstr));
+                input.value = ""
+            }else{
+                alert("please enter name")
+            }
+            ans.innerHTML = ""
+            localstr.forEach(element => {
+                ans.innerHTML += element
+
+            });
+        }) 
+         
+    </script>
+
+</body>
+</html>
