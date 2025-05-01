@@ -56,21 +56,11 @@ counter.innerHTML = cartArr.length;
 function addToCart(productid) {
     cartArr = JSON.parse(localStorage.getItem("cartArray")) || []
     let item = cartarr.find((obj) => obj.id == productid);
-    
 
     let productIdx = cartArr.findIndex((obj) => productid == obj.id);
-    
 
-    if (productIdx != -1) {
-        Swal.fire({
-            title: "Already Added To Cart",
-            icon: "warning",
-            position: "top-start",
-            showConfirmButton: false,
-            timer: 1000,
-            toast: true
-          });
-    } else {
+
+    if (productIdx == -1) {
         item.quantity = 1;
         cartArr.push(item);
         Swal.fire({
@@ -80,7 +70,16 @@ function addToCart(productid) {
             showConfirmButton: false,
             timer: 1000,
             toast: true
-          });
+        });
+    } else {
+        Swal.fire({
+            title: "Already Added To Cart",
+            icon: "warning",
+            position: "top-start",
+            showConfirmButton: false,
+            timer: 1000,
+            toast: true
+        });
     }
 
     localStorage.setItem("cartArray", JSON.stringify(cartArr));
